@@ -1,7 +1,14 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useContactModal } from "@/hooks/use-contact-modal";
-import { X } from "lucide-react";
+import { X, Loader2 } from "lucide-react";
+
+const RATE_LIMIT_KEY = "tg_last_submit";
+const RATE_LIMIT_MS = 60_000; // 60 seconds between submissions
+const MIN_FILL_MS = 3_000;    // must take at least 3 seconds to fill the form
+
+// Replace with your Formspree form ID from https://formspree.io
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xpwzgkqb";
 
 type RadioGroupProps = {
   name: string;
@@ -26,14 +33,62 @@ function RadioGroup({ name, options }: RadioGroupProps) {
 export default function ContactModal() {
   const { isOpen, closeModal } = useContactModal();
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [spamBlocked, setSpamBlocked] = useState(false);
+  const openedAt = useRef<number>(0);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Record when the modal opens so we can check fill-time
+  useEffect(() => {
+    if (isOpen) openedAt.current = Date.now();
+  }, [isOpen]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSuccess(true);
-    setTimeout(() => {
-      setIsSuccess(false);
-      closeModal();
-    }, 3500);
+    setIsError(false);
+    setSpamBlocked(false);
+
+    // Layer 1: honeypot — if _gotcha field has any value, silently discard
+    const data = new FormData(e.currentTarget);
+    if (data.get("_gotcha")) return;
+
+    // Layer 2: time check — block if submitted in under 3 seconds
+    if (Date.now() - openedAt.current < MIN_FILL_MS) {
+      setSpamBlocked(true);
+      return;
+    }
+
+    // Layer 3: rate limit — block if resubmitting within 60 seconds
+    const lastSubmit = Number(localStorage.getItem(RATE_LIMIT_KEY) || 0);
+    if (Date.now() - lastSubmit < RATE_LIMIT_MS) {
+      setSpamBlocked(true);
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        localStorage.setItem(RATE_LIMIT_KEY, String(Date.now()));
+        setIsSuccess(true);
+        setTimeout(() => {
+          setIsSuccess(false);
+          closeModal();
+        }, 3500);
+      } else {
+        setIsError(true);
+      }
+    } catch {
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -84,10 +139,20 @@ export default function ContactModal() {
               ) : (
                 <>
                   <h2 className="text-2xl font-mono font-bold text-primary mb-8 mt-8 leading-tight">
-                    {"<Hi, TimeGlobalTech team!/>"}
+                    {"<Tell us about your project/>"}
                   </h2>
 
                   <form onSubmit={handleSubmit} className="space-y-8 flex-1">
+                    {/* Honeypot — invisible to humans, filled by bots → auto-rejected by Formspree */}
+                    <input
+                      type="text"
+                      name="_gotcha"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      aria-hidden="true"
+                      className="hidden"
+                    />
+
                     {/* Name + Company */}
                     <div className="space-y-2">
                       <label className="text-sm font-semibold text-foreground uppercase tracking-wider">
@@ -97,6 +162,7 @@ export default function ContactModal() {
                         <span className="text-muted-foreground">My name is</span>
                         <input
                           type="text"
+                          name="name"
                           required
                           placeholder="Full Name"
                           className="border-b-2 border-border focus:border-primary bg-transparent outline-none px-2 py-1 flex-1 min-w-[130px] transition-colors"
@@ -104,6 +170,7 @@ export default function ContactModal() {
                         <span className="text-muted-foreground">from</span>
                         <input
                           type="text"
+                          name="company"
                           required
                           placeholder="Company"
                           className="border-b-2 border-border focus:border-primary bg-transparent outline-none px-2 py-1 flex-1 min-w-[130px] transition-colors"
@@ -152,6 +219,7 @@ export default function ContactModal() {
                         </label>
                         <input
                           type="email"
+                          name="email"
                           required
                           placeholder="you@company.com"
                           className="w-full border-b-2 border-border focus:border-primary bg-transparent outline-none py-2 transition-colors placeholder:text-muted-foreground/40"
@@ -163,6 +231,7 @@ export default function ContactModal() {
                         </label>
                         <input
                           type="tel"
+                          name="phone"
                           placeholder="+1 (555) 000-0000"
                           className="w-full border-b-2 border-border focus:border-primary bg-transparent outline-none py-2 transition-colors placeholder:text-muted-foreground/40"
                         />
@@ -174,18 +243,39 @@ export default function ContactModal() {
                       <input type="checkbox" required className="mt-1 w-4 h-4 accent-primary shrink-0" />
                       <span className="text-sm text-muted-foreground leading-relaxed">
                         I have read and accept the terms of the{" "}
-                        <a href="#" className="text-primary underline hover:no-underline">
+                        <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:no-underline">
                           Privacy Policy
                         </a>
                       </span>
                     </label>
 
+                    {isError && (
+                      <p className="text-sm text-red-500 text-center -mt-2">
+                        Something went wrong. Please try again or email us at{" "}
+                        <a href="mailto:info@timeglobaltech.com" className="underline">info@timeglobaltech.com</a>.
+                      </p>
+                    )}
+
+                    {spamBlocked && (
+                      <p className="text-sm text-amber-500 text-center -mt-2">
+                        Please wait a moment before submitting again.
+                      </p>
+                    )}
+
                     <button
                       type="submit"
+                      disabled={isLoading}
                       data-testid="button-submit-contact"
-                      className="w-full py-4 rounded-lg bg-gradient-to-r from-primary to-[#00A375] text-white font-bold text-base hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 transition-all duration-200"
+                      className="w-full py-4 rounded-lg bg-gradient-to-r from-primary to-emerald-600 text-white font-bold text-base hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
-                      send message
+                      {isLoading ? (
+                        <>
+                          <Loader2 size={18} className="animate-spin" />
+                          sending…
+                        </>
+                      ) : (
+                        "send message"
+                      )}
                     </button>
                   </form>
                 </>

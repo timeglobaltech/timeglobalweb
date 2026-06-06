@@ -135,10 +135,11 @@ export default function Services() {
             <button
               onClick={() => setOpenAccordion(openAccordion === i ? null : i)}
               data-testid={`button-accordion-${i}`}
+              aria-expanded={openAccordion === i}
               className="w-full py-7 flex items-center justify-between text-left focus:outline-none group"
             >
               <div className="flex items-center gap-5">
-                <span className="text-xl font-mono text-primary/50 group-hover:text-primary transition-colors w-8 shrink-0">
+                <span className="text-xl font-mono text-primary/80 dark:text-primary/50 group-hover:text-primary transition-colors w-8 shrink-0">
                   {item.num}
                 </span>
                 <span className="text-xl md:text-2xl font-bold">{item.title}</span>
@@ -160,7 +161,7 @@ export default function Services() {
                   transition={{ duration: 0.25 }}
                   className="overflow-hidden"
                 >
-                  <p className="pb-7 pl-13 text-lg text-muted-foreground pr-8" style={{ paddingLeft: "52px" }}>
+                  <p className="pb-7 pl-[52px] text-lg text-muted-foreground pr-8">
                     {item.desc}
                   </p>
                 </motion.div>

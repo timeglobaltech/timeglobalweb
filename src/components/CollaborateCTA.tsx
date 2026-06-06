@@ -12,11 +12,11 @@ export default function CollaborateCTA() {
           Collaborate with Us
         </h2>
         <p className="text-xl md:text-2xl text-secondary-foreground/80 mb-12 leading-relaxed">
-          TimeGlobalTech invests in fresh ideas. We help entrepreneurs bring brilliant projects to market and turn them into profitable digital products.
+          Time Global invests in fresh ideas. We help entrepreneurs bring brilliant projects to market and turn them into profitable digital products.
         </p>
         <button 
           onClick={openModal} 
-          className="px-10 py-5 rounded-lg bg-gradient-to-r from-primary to-[#00A375] text-white font-bold text-xl hover:shadow-2xl hover:shadow-primary/30 transition-all hover:-translate-y-1 btn-shimmer"
+          className="px-10 py-5 rounded-xl bg-gradient-to-r from-primary to-emerald-600 text-white font-bold text-xl hover:shadow-2xl hover:shadow-primary/30 transition-all hover:opacity-90 btn-shimmer"
         >
           let's discuss your idea
         </button>

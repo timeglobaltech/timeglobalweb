@@ -18,7 +18,7 @@ export default function Awards() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {AWARDS.map((award, i) => (
             <div key={i} className="flex flex-col items-center group">
-              <div className="w-32 h-32 bg-secondary rounded-[2rem] rotate-45 flex items-center justify-center mb-10 transition-transform group-hover:rotate-0 duration-500 shadow-xl border-4 border-background outline outline-1 outline-border">
+              <div className="w-32 h-32 bg-secondary rounded-3xl rotate-45 flex items-center justify-center mb-10 transition-transform group-hover:rotate-0 duration-500 shadow-xl border-4 border-background outline outline-1 outline-border">
                 <div className="-rotate-45 group-hover:rotate-0 transition-transform duration-500 font-display font-bold text-primary text-xl">
                   {award.year}
                 </div>

@@ -1,11 +1,20 @@
-import { Github, Linkedin, Twitter, Instagram, Facebook, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, MessageCircle } from "lucide-react";
+import { Link } from "wouter";
+import { 
+  FaLinkedinIn, 
+  FaGithub, 
+  FaFacebookF, 
+  FaInstagram, 
+  FaPinterestP, 
+  FaTiktok, 
+  FaYoutube 
+} from "react-icons/fa";
 
 const NAV_LINKS = [
-  { label: "<why us>", href: "#why-us" },
-  { label: "<services>", href: "#services" },
-  { label: "<cases>", href: "#cases" },
-  { label: "<tech stack>", href: "#tech-stack" },
-  { label: "<careers>", href: "#careers" },
+  { label: "<work>", href: "/work" },
+  { label: "<services>", href: "/services" },
+  { label: "<stories>", href: "/stories" },
+  { label: "<careers>", href: "/careers" },
 ];
 
 const SERVICES_LINKS = [
@@ -17,11 +26,14 @@ const SERVICES_LINKS = [
 ];
 
 const SOCIAL = [
-  { icon: Facebook, label: "Facebook", href: "#" },
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: Twitter, label: "Twitter / X", href: "#" },
-  { icon: Instagram, label: "Instagram", href: "#" },
-  { icon: Github, label: "GitHub", href: "#" },
+  { icon: FaLinkedinIn, label: "LinkedIn", href: "https://www.linkedin.com/company/timeglobaltech" },
+  { icon: FaFacebookF, label: "Facebook", href: "https://www.facebook.com/timeglobaltech/" },
+  { icon: FaInstagram, label: "Instagram", href: "https://www.instagram.com/timeglobaltech/" },
+    { icon: FaYoutube, label: "YouTube", href: "https://www.youtube.com/@timeglobaltech" },
+  { icon: FaTiktok, label: "TikTok", href: "https://www.tiktok.com/@time.global.tech" },
+  { icon: FaGithub, label: "GitHub", href: "https://github.com/timeglobaltech" },
+  { icon: FaPinterestP, label: "Pinterest", href: "https://www.pinterest.com/timeglobaltech/" },
+
 ];
 
 export default function Footer() {
@@ -33,37 +45,18 @@ export default function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 font-display font-bold text-xl tracking-tight mb-5">
-              <svg
+              <img 
+                src="/assets/tg-logo.png" 
+                alt="Time Global Logo" 
                 width="28"
                 height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-[#00C48C]"
-              >
-                <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" strokeWidth="2.5" />
-                <circle cx="12" cy="12" r="4" fill="currentColor" />
-                <path d="M12 2v6M12 16v6M2 12h6M16 12h6" stroke="currentColor" strokeWidth="2.5" />
-              </svg>
-              TimeGlobalTech
+                className="w-7 h-7 object-contain"
+              />
+              Time Global
             </div>
             <p className="text-white/50 text-sm leading-relaxed mb-6 max-w-[220px]">
               Delivering world-class software solutions globally. Precision, ambition, and expertise encoded in every project.
             </p>
-
-            {/* Social links */}
-            <div className="flex flex-wrap gap-2">
-              {SOCIAL.map(({ icon: Icon, label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center text-white/40 hover:text-[#00C48C] hover:border-[#00C48C]/40 transition-all duration-200"
-                >
-                  <Icon size={15} />
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Navigation */}
@@ -72,12 +65,9 @@ export default function Footer() {
             <ul className="flex flex-col gap-3">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="font-mono text-sm text-white/50 hover:text-[#00C48C] transition-colors duration-200"
-                  >
+                  <Link href={link.href} className="font-mono text-sm text-white/50 hover:text-primary transition-colors duration-200 cursor-pointer">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -107,52 +97,74 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:info@timeglobaltech.com"
-                  className="flex items-start gap-2.5 text-sm text-white/50 hover:text-[#00C48C] transition-colors group"
+                  className="flex items-start gap-2.5 text-sm text-white/50 hover:text-primary transition-colors group"
                 >
-                  <Mail size={15} className="mt-0.5 shrink-0 text-[#00C48C]" />
+                  <Mail size={15} className="mt-0.5 shrink-0 text-primary" />
                   info@timeglobaltech.com
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+15555550100"
-                  className="flex items-start gap-2.5 text-sm text-white/50 hover:text-[#00C48C] transition-colors"
+                  href="https://wa.me/923148455430?text=Hi,%20I%20clicked%20your%20website%20number,"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-2.5 text-sm text-white/50 hover:text-primary transition-colors"
                 >
-                  <Phone size={15} className="mt-0.5 shrink-0 text-[#00C48C]" />
-                  +1 (555) 555-0100
+                  <MessageCircle size={15} className="mt-0.5 shrink-0 text-primary" />
+                  +92 314 8455430
                 </a>
               </li>
               <li className="flex items-start gap-2.5 text-sm text-white/50">
-                <MapPin size={15} className="mt-0.5 shrink-0 text-[#00C48C]" />
-                <span>123 Innovation Drive,<br />San Francisco, CA 94105</span>
+                <MapPin size={15} className="mt-0.5 shrink-0 text-primary" />
+                <span> Banglow Office # 1/2-L ,Block-6, P.E.C.H. Society,  <br />Shahrah-e-Faisal, PECHS, Karachi, 75350</span>
               </li>
             </ul>
 
-            <div className="mt-8">
-              <h5 className="font-bold text-white/90 text-sm uppercase tracking-widest mb-4">Our Products</h5>
-              <ul className="flex flex-col gap-2">
-                <li>
-                  <a href="#" className="text-sm text-white/50 hover:text-white transition-colors">TechFlow Platform</a>
-                </li>
-                <li>
-                  <a href="#" className="text-sm text-white/50 hover:text-white transition-colors">DevKit Pro</a>
-                </li>
-              </ul>
-            </div>
+            
           </div>
         </div>
       </div>
 
-      {/* Divider + bottom strip */}
+      {/* Social links row */}
+      <div className="border-t border-white/8">
+        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-center gap-8">
+          <span className="text-white/50 text-sm font-medium">Follow us:</span>
+          <div className="flex flex-wrap items-center justify-center gap-8">
+            {SOCIAL.map(({ icon: Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/40 hover:text-white transition-all duration-300"
+              >
+                <Icon size={20} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom strip */}
       <div className="border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="text-white/30 text-xs">
-            © {new Date().getFullYear()} TimeGlobalTech, Inc. — Software Development Agency. All rights reserved.
+            © 2013 to {new Date().getFullYear()} Time Global — AI based Software Development Agency —  Pakistan Registered — <a href="https://www.pseb.org.pk/" target="_blank" rel="noopener noreferrer" className="hover:text-white/60 transition-colors"> PSEB </a> 
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-xs text-white/30 hover:text-white/60 transition-colors">Privacy Policy</a>
-            <a href="#" className="text-xs text-white/30 hover:text-white/60 transition-colors">Terms of Service</a>
-            <a href="#" className="text-xs text-white/30 hover:text-white/60 transition-colors">Cookie Policy</a>
+            <Link href="/privacy-policy" className="text-xs text-white/30 hover:text-white/60 transition-colors cursor-pointer">
+              Privacy Policy
+            </Link>
+            <Link href="/terms-and-conditions" className="text-xs text-white/30 hover:text-white/60 transition-colors cursor-pointer">
+              Terms
+            </Link>
+            <Link href="/cookie-policy" className="text-xs text-white/30 hover:text-white/60 transition-colors cursor-pointer">
+              Cookie Policy
+            </Link>
+            <Link href="/refund-policy" className="text-xs text-white/30 hover:text-white/60 transition-colors cursor-pointer">
+              Refund Policy
+            </Link>
           </div>
         </div>
       </div>

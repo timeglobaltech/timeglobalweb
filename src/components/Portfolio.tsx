@@ -6,7 +6,7 @@ import { useContactModal } from "@/hooks/use-contact-modal";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const CASES = [
+const STORIES_LIST = [
   {
     tag: "<EduTrack/>",
     desc: "A next-gen learning management system for universities and online academies.",
@@ -57,13 +57,13 @@ export default function Portfolio() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 px-6 bg-background overflow-hidden" id="cases">
+    <section ref={sectionRef} className="py-32 px-6 bg-background overflow-hidden" id="stories">
       <div className="max-w-7xl mx-auto mb-24">
         <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-mono text-sm font-bold mb-6">
           {'<our work>'}
         </div>
         <h2 className="text-4xl md:text-6xl font-bold mb-6 max-w-3xl">
-          Prominent Cases
+          Success Stories
         </h2>
         <p className="text-xl text-muted-foreground max-w-2xl">
           We are good at building web and mobile apps used by thousands and platforms that serve growing businesses.
@@ -71,7 +71,7 @@ export default function Portfolio() {
       </div>
 
       <div className="max-w-7xl mx-auto flex flex-col gap-24 mb-32">
-        {CASES.map((item, i) => (
+        {STORIES_LIST.map((item, i) => (
           <div key={i} className={`case-card grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${i % 2 !== 0 ? 'lg:rtl' : ''}`}>
             {/* Mockup side */}
             <div className={`relative aspect-video rounded-3xl bg-card border ${item.border} p-6 overflow-hidden shadow-2xl flex flex-col ${i % 2 !== 0 ? 'lg:ltr' : ''}`}>
@@ -119,7 +119,7 @@ export default function Portfolio() {
               <p className="text-2xl text-foreground font-medium mb-8 leading-relaxed">
                 {item.desc}
               </p>
-              <a href="#" className="inline-flex items-center text-lg font-bold text-muted-foreground hover:text-primary transition-colors group">
+              <a href="/work" className="inline-flex items-center text-lg font-bold text-muted-foreground hover:text-primary transition-colors group">
                 learn more
                 <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
               </a>
@@ -136,7 +136,7 @@ export default function Portfolio() {
         </div>
 
         <h3 className="text-5xl font-bold mb-8 relative z-10">Will your idea be next?</h3>
-        <button onClick={openModal} className="px-10 py-5 rounded-full bg-white text-primary font-bold text-xl hover:shadow-2xl hover:scale-105 transition-all relative z-10">
+        <button onClick={openModal} className="px-10 py-5 rounded-xl bg-white text-primary font-bold text-xl hover:shadow-2xl hover:opacity-90 transition-all relative z-10">
           let's talk
         </button>
       </div>

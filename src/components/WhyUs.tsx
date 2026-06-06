@@ -75,10 +75,10 @@ export default function WhyUs() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-28 px-6 bg-background overflow-hidden" id="why-us">
+    <section ref={sectionRef} className="py-28 px-6 bg-background overflow-hidden" id="work">
       <div className="max-w-7xl mx-auto mb-16 text-center">
         <div className="inline-block px-4 py-1.5 rounded-lg bg-primary/10 text-primary font-mono text-sm font-bold mb-6 border border-primary/20">
-          {"<why timeglobaltech>"}
+          {"<our work>"}
         </div>
         <h2 className="text-4xl md:text-5xl font-bold mb-5 max-w-3xl mx-auto leading-tight">
           Top Six Reasons to Work With Us
@@ -107,27 +107,16 @@ export default function WhyUs() {
         ))}
       </div>
 
-      {/* Infinite Stats Marquee */}
-      <div className="w-full bg-secondary text-secondary-foreground py-6 border-y border-border overflow-hidden">
-        <div className="flex whitespace-nowrap animate-[statsmarquee_28s_linear_infinite]">
-          {[...Array(4)].map((_, outer) => (
-            <div key={outer} className="flex items-center gap-12 px-8 shrink-0">
-              {STATS.map((stat, j) => (
-                <div key={j} className="flex items-center gap-12 shrink-0">
-                  <span className="text-xl font-display font-bold">{stat}</span>
-                  <div className="w-2.5 h-2.5 rounded-full bg-primary shrink-0" />
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-        <style>{`
-          @keyframes statsmarquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-        `}</style>
+      {/* Stats bar */}
+      <div className="max-w-7xl mx-auto border-t border-border pt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
+        {STATS.map((stat, i) => (
+          <div key={i} className="text-center">
+            <p className="text-3xl font-black text-primary font-mono">{stat.split(" ")[0]}</p>
+            <p className="text-sm text-muted-foreground mt-1 capitalize">{stat.split(" ").slice(1).join(" ")}</p>
+          </div>
+        ))}
       </div>
+
     </section>
   );
 }

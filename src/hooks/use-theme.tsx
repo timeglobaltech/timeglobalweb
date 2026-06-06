@@ -15,7 +15,7 @@ const ThemeContext = createContext<ThemeContextValue>({
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
     try {
-      return (localStorage.getItem("tgt-theme") as Theme) || "light";
+      return (localStorage.getItem("tg-theme") as Theme) || "light";
     } catch {
       return "light";
     }
@@ -29,7 +29,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       root.classList.remove("dark");
     }
     try {
-      localStorage.setItem("tgt-theme", theme);
+      localStorage.setItem("tg-theme", theme);
     } catch {}
   }, [theme]);
 
