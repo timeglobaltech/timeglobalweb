@@ -11,8 +11,11 @@ export default function Awards() {
   const { openModal } = useContactModal();
 
   return (
-    <section className="bg-background pt-32">
+    <section className="bg-background py-32">
       <div className="max-w-7xl mx-auto px-6 mb-24 text-center">
+        <div className="inline-block px-4 py-1.5 rounded-lg bg-primary/10 text-primary font-mono text-sm font-bold mb-6 border border-primary/20">
+          {'<Recognition/>'}
+        </div>
         <h2 className="text-4xl md:text-5xl font-bold mb-16">We're Proud Of</h2>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">

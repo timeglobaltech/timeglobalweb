@@ -3,13 +3,13 @@ import HeroSection from "@/components/HeroSection";
 import IndustryShowcase from "@/components/IndustryShowcase";
 import WhyUs from "@/components/WhyUs";
 import TechStack from "@/components/TechStack";
-import Portfolio from "@/components/Portfolio";
+// import Portfolio from "@/components/Portfolio";
 import ServiceMarquee from "@/components/ServiceMarquee";
 import Testimonials from "@/components/Testimonials";
 import CollaborateCTA from "@/components/CollaborateCTA";
 import Awards from "@/components/Awards";
 import Footer from "@/components/Footer";
-
+import { CaseStudySlider } from "@/components/CaseStudySlider";
 export default function HomePage() {
   return (
     <div className="min-h-[100dvh] w-full flex flex-col bg-background font-sans text-foreground">
@@ -22,7 +22,8 @@ export default function HomePage() {
         <TechStack />
         <IndustryShowcase />
         <WhyUs />
-        <Portfolio />
+        <CaseStudySlider />
+        {/* <Portfolio /> */}
         <ServiceMarquee />
         <Testimonials />
         <CollaborateCTA />

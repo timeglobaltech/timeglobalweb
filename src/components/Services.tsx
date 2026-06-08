@@ -60,7 +60,7 @@ export default function Services() {
   const { openModal } = useContactModal();
 
   return (
-    <section className="py-28 px-6 bg-card" id="services">
+    <section className="py-32 px-6 bg-card" id="services">
       <div className="max-w-7xl mx-auto mb-16">
         <div className="inline-block px-4 py-1.5 rounded-lg bg-primary/10 text-primary font-mono text-sm font-bold mb-6 border border-primary/20">
           {"<services>"}
@@ -115,7 +115,7 @@ export default function Services() {
               <div className="mt-8 relative z-10">
                 <button
                   onClick={openModal}
-                  className="px-6 py-2.5 rounded-lg bg-primary text-white font-semibold text-sm hover:bg-primary/90 transition-colors"
+                  className="px-6 py-2.5 rounded-lg bg-primary text-white font-semibold text-sm hover:opacity-90 transition-opacity"
                 >
                   let's talk →
                 </button>

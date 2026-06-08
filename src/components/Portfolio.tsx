@@ -59,8 +59,8 @@ export default function Portfolio() {
   return (
     <section ref={sectionRef} className="py-32 px-6 bg-background overflow-hidden" id="stories">
       <div className="max-w-7xl mx-auto mb-24">
-        <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-mono text-sm font-bold mb-6">
-          {'<our work>'}
+        <div className="inline-block px-4 py-1.5 rounded-lg bg-primary/10 text-primary font-mono text-sm font-bold mb-6 border border-primary/20">
+          {'<our work/>'}
         </div>
         <h2 className="text-4xl md:text-6xl font-bold mb-6 max-w-3xl">
           Success Stories

@@ -5,13 +5,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CollaborateCTA from "@/components/CollaborateCTA";
-import { 
-  Trophy, 
-  Frown, 
-  Lightbulb, 
-  Rocket, 
-  ArrowRight, 
-  CheckCircle2, 
+import {
+  Trophy,
+  Frown,
+  Lightbulb,
+  Rocket,
+  CheckCircle2,
   AlertCircle,
   TrendingUp,
   Target,
@@ -20,236 +19,220 @@ import {
   Quote,
   Search,
   Code2,
-  Cpu
+  Cpu,
+  BrainCircuit,
+  ShieldCheck,
+  Star,
+  Zap,
+  Palette,
+  CalendarCheck,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// ─── Data ────────────────────────────────────────────────────────────────────
+
 const SUCCESS_STORIES = [
   {
     id: "success-1",
-    tag: "FinTech",
-    title: "Revolutionizing Digital Payments",
-    desc: "How we helped a startup scale from 0 to 1M+ transactions daily with a custom-built payment gateway.",
-    impact: "1M+ Daily Transactions",
-    challenge: "Scaling legacy infrastructure to handle massive spikes.",
-    solution: "Serverless architecture and real-time monitoring.",
+    tag: "Mobile App",
+    title: "From Crash-Prone Prototype to 100K Downloads",
+    desc: "A health startup came to us with a half-built React Native app — 40+ crash reports open, no Android version, and an investor demo in 6 weeks. We took full ownership, rebuilt the core architecture, and shipped both iOS and Android on time. Within 60 days of launch, the app charted in the App Store's top 10 for Health & Fitness.",
+    impact: "100K Downloads · Top 10 App Store",
+    challenge: "Unstable codebase, no Android build, and a non-negotiable investor demo deadline threatening the next funding round.",
+    solution: "Complete React Native rebuild with shared cross-platform logic, offline support, and a performance overhaul that cut load time by 65%.",
     color: "from-emerald-500/20 to-teal-500/20",
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80&w=1200",
-    icon: <Trophy className="text-emerald-500" size={32} />
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=1200",
+    icon: <Trophy className="text-emerald-500" size={32} />,
   },
   {
     id: "success-2",
-    tag: "Healthcare",
-    title: "AI-Driven Patient Care",
-    desc: "Implementing predictive analytics to improve patient outcome tracking for over 500 clinics.",
-    impact: "40% Better Outcomes",
-    challenge: "Fragmented data across multiple health providers.",
-    solution: "Centralized AI data lake with HIPAA compliance.",
+    tag: "E-commerce & UI/UX",
+    title: "A Checkout Redesign That Tripled Revenue",
+    desc: "A fashion retailer had strong brand recognition and steady traffic — but was bleeding customers at checkout. We redesigned the end-to-end shopping experience, from product discovery to payment confirmation, with a relentless focus on mobile. The numbers changed within the first month.",
+    impact: "3× Conversion Rate · 58% Drop in Abandonment",
+    challenge: "A 6-step desktop-only checkout that was losing 74% of mobile visitors before they ever reached payment.",
+    solution: "Mobile-first Shopify redesign with one-tap checkout, smart product recommendations, and a streamlined 2-step purchase flow.",
     color: "from-blue-500/20 to-indigo-500/20",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1200",
-    icon: <Rocket className="text-blue-500" size={32} />
-  }
+    image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&q=80&w=1200",
+    icon: <Rocket className="text-blue-500" size={32} />,
+  },
 ];
 
 const FAILURE_STORIES = [
   {
     id: "failure-1",
-    tag: "E-Commerce",
-    title: "The Black Friday Crash",
-    desc: "A lesson in load balancing. What happened when our first major client's site went down for 2 hours during peak traffic.",
-    lesson: "Redundancy is not optional.",
-    challenge: "Unexpected 10x traffic spike.",
-    fix: "Auto-scaling groups and multi-region failover.",
+    tag: "Web Development",
+    title: "The Launch That Went Down in 11 Minutes",
+    desc: "A client pushed hard to launch their web platform ahead of schedule. We agreed — and skipped the load testing phase to make the deadline. On launch day, a traffic spike eight times our projected peak took the entire backend offline in under 11 minutes. The client lost thousands in sales. We lost sleep.",
+    lesson: "Speed without resilience isn't delivery — it's a delayed disaster.",
+    challenge: "No autoscaling configured, single-region deployment, and zero buffer for real-world traffic patterns.",
+    fix: "We rebuilt the infrastructure with auto-scaling groups, multi-region failover, and CDN-level caching. Pre-launch stress testing is now mandatory on every project we ship.",
     color: "from-rose-500/20 to-orange-500/20",
-    image: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1200",
-    icon: <Frown className="text-rose-500" size={32} />
+    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=1200",
+    icon: <Frown className="text-rose-500" size={32} />,
   },
   {
     id: "failure-2",
-    tag: "SaaS",
-    title: "The Data Migration Delay",
-    desc: "How a 24-hour migration turned into a 72-hour ordeal and how we rebuilt trust with the client.",
-    lesson: "Always have a rollback plan.",
-    challenge: "Corrupt legacy data structures.",
-    fix: "New automated data validation pipeline.",
+    tag: "UI/UX Design",
+    title: "The Beautiful Interface Nobody Could Use",
+    desc: "We were proud of a dashboard redesign we delivered for an operations client. Visually, it was our best work to date. We were so confident we skipped formal user testing. Within days of launch, every power user was confused. Workflows they'd relied on for years had moved or disappeared. The client rolled back within a week.",
+    lesson: "Great design is invisible. If users notice it, something is wrong.",
+    challenge: "We optimised for aesthetics and modern patterns — ignoring the deeply ingrained mental models of users who had worked in the old UI for three years.",
+    fix: "We rebuilt the design with real usability testing from the start. Now, no major UI ships without sessions with at least five actual users validating the flows.",
     color: "from-amber-500/20 to-yellow-500/20",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=1200",
-    icon: <AlertCircle className="text-amber-500" size={32} />
-  }
+    image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&q=80&w=1200",
+    icon: <AlertCircle className="text-amber-500" size={32} />,
+  },
+];
+
+const TESTIMONIALS = [
+  {
+    quote: "They pushed back on half our initial requirements and explained exactly why each one would slow us down. That honesty saved us at least four months of building the wrong thing.",
+    name: "Adam R.",
+    role: "Co-founder, PropTech SaaS",
+    avatar: "AR",
+    color: "bg-blue-500",
+  },
+  {
+    quote: "Our app went from something we were embarrassed to show investors to App Store featured — in three months. They treated it like it was their own product.",
+    name: "Nadia K.",
+    role: "Head of Product, Health Startup",
+    avatar: "NK",
+    color: "bg-emerald-500",
+  },
+  {
+    quote: "Every agency we spoke to promised results. These guys showed us the actual numbers every single week and delivered exactly what they scoped — nothing less.",
+    name: "Daniel M.",
+    role: "CTO, E-commerce Brand",
+    avatar: "DM",
+    color: "bg-violet-500",
+  },
 ];
 
 const GLOBAL_STATS = [
-  { label: "Daily Transactions", value: 1, suffix: "M+", icon: <TrendingUp size={24} /> },
-  { label: "Countries Served", value: 16, suffix: "+", icon: <Globe size={24} /> },
-  { label: "Retention Rate", value: 98.9, suffix: "%", icon: <Users size={24} /> },
+  { label: "Projects Delivered",   value: 60, suffix: "+", icon: <Rocket size={24} /> },
+  { label: "Client Retention Rate", value: 94, suffix: "%", icon: <Users size={24} /> },
+  { label: "Countries Served",      value: 16,  suffix: "+", icon: <Globe size={24} /> },
+  { label: "Years in Business",     value: 13,  suffix: "+", icon: <CalendarCheck size={24} /> },
 ];
 
 const PROCESS_STEPS = [
   {
     title: "Discovery",
-    desc: "We dive deep into your business logic and technical bottlenecks.",
+    desc: "We map your goals, users, and constraints before writing a single line of code. No assumptions. No wasted sprints.",
     icon: <Search className="text-primary" size={24} />,
-    color: "bg-blue-500/10"
+    color: "bg-blue-500/10",
+  },
+  {
+    title: "Design",
+    desc: "UI/UX built around how your users actually think — not what looks good in a portfolio. Every screen is validated before it is built.",
+    icon: <Palette className="text-primary" size={24} />,
+    color: "bg-violet-500/10",
   },
   {
     title: "Engineering",
-    desc: "Precision coding with a focus on scalability and long-term stability.",
+    desc: "Web platforms, mobile apps, e-commerce stores — precision code built for where you are going, not just where you are today.",
     icon: <Code2 className="text-primary" size={24} />,
-    color: "bg-emerald-500/10"
+    color: "bg-emerald-500/10",
   },
   {
-    title: "Optimization",
-    desc: "Continuous refinement to ensure peak performance under any load.",
-    icon: <Cpu className="text-primary" size={24} />,
-    color: "bg-purple-500/10"
-  }
+    title: "Launch & Scale",
+    desc: "We don't disappear after go-live. Performance monitoring, AI integrations, and continuous improvement are part of every engagement.",
+    icon: <BrainCircuit className="text-primary" size={24} />,
+    color: "bg-amber-500/10",
+  },
 ];
+
+// ─── Component ───────────────────────────────────────────────────────────────
 
 export default function StoriesPage() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    
-    // Refresh ScrollTrigger after a short delay to ensure DOM is ready
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 100);
+
+    const timer = setTimeout(() => ScrollTrigger.refresh(), 100);
 
     const ctx = gsap.context(() => {
-      // Hero Animation
-      gsap.fromTo(".hero-text", 
+      // Hero
+      gsap.fromTo(
+        ".hero-text",
         { y: 60, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power3.out",
-          stagger: 0.2
-        }
+        { y: 0, opacity: 1, duration: 1, ease: "power3.out", stagger: 0.2 }
       );
 
-      // Story Card Animations
+      // Story cards — fix: use data attribute instead of classList for direction
       const cards = gsap.utils.toArray(".story-anim-card");
       cards.forEach((card: any) => {
-        const image = card.querySelector(".story-image-box");
-        const imgElement = card.querySelector("img");
+        const image   = card.querySelector(".story-image-box");
+        const imgEl   = card.querySelector("img");
         const content = card.querySelector(".story-content-box");
+        const dir     = card.dataset.dir === "reverse" ? 1 : -1;
 
-        // Image Parallax
-        if (imgElement) {
-          gsap.to(imgElement, {
+        if (imgEl) {
+          gsap.to(imgEl, {
             yPercent: 15,
             ease: "none",
-            scrollTrigger: {
-              trigger: card,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true
-            }
+            scrollTrigger: { trigger: card, start: "top bottom", end: "bottom top", scrub: true },
           });
         }
-
-        // Entrance reveals - Restoring the side slide animation you liked
         if (image) {
-          gsap.fromTo(image, 
-            { x: card.classList.contains("flex-row-reverse") ? 100 : -100, opacity: 0 },
-            {
-              x: 0,
-              opacity: 1,
-              duration: 1.5,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: card,
-                start: "top 80%",
-                end: "top 20%",
-                toggleActions: "play reverse play reverse",
-              }
-            }
+          gsap.fromTo(image,
+            { x: 120 * -dir, opacity: 0 },
+            { x: 0, opacity: 1, duration: 1.5, ease: "power3.out",
+              scrollTrigger: { trigger: card, start: "top 80%", end: "top 20%", toggleActions: "play reverse play reverse" } }
           );
         }
-
         if (content) {
-          gsap.fromTo(content, 
-            { x: card.classList.contains("flex-row-reverse") ? -100 : 100, opacity: 0 },
-            {
-              x: 0,
-              opacity: 1,
-              duration: 1.2,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: card,
-                start: "top 75%",
-                end: "top 15%",
-                toggleActions: "play reverse play reverse",
-              }
-            }
+          gsap.fromTo(content,
+            { x: 120 * dir, opacity: 0 },
+            { x: 0, opacity: 1, duration: 1.2, ease: "power2.out",
+              scrollTrigger: { trigger: card, start: "top 75%", end: "top 15%", toggleActions: "play reverse play reverse" } }
           );
         }
       });
 
-      // Live Counter Animation
-      const statItems = gsap.utils.toArray(".stat-counter");
-      statItems.forEach((stat: any) => {
-        const targetValue = parseFloat(stat.getAttribute("data-value") || "0");
-        const isDecimal = stat.getAttribute("data-value")?.includes(".");
-        
-        gsap.fromTo(stat, 
+      // Counters
+      gsap.utils.toArray(".stat-counter").forEach((stat: any) => {
+        const target    = parseFloat(stat.dataset.value || "0");
+        const isDecimal = stat.dataset.value?.includes(".");
+        gsap.fromTo(stat,
           { innerText: 0 },
           {
-            innerText: targetValue,
-            duration: 2,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: ".stats-section",
-              start: "top 80%",
+            innerText: target, duration: 2, ease: "power2.out",
+            scrollTrigger: { trigger: ".stats-section", start: "top 80%" },
+            onUpdate() {
+              const v = parseFloat(this.targets()[0].innerText);
+              stat.innerText = isDecimal ? v.toFixed(1) : Math.floor(v);
             },
-            onUpdate: function() {
-              const val = parseFloat(this.targets()[0].innerText);
-              stat.innerText = isDecimal ? val.toFixed(1) : Math.floor(val);
-            }
           }
         );
       });
 
-      // Process Items Animation
-      gsap.fromTo(".process-item", 
+      // Process cards
+      gsap.fromTo(".process-item",
         { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".process-section",
-            start: "top 90%",
-          }
-        }
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: "power2.out",
+          scrollTrigger: { trigger: ".process-section", start: "top 90%" } }
       );
 
-      // DNA Items Animation
-      gsap.fromTo(".dna-item", 
+      // Testimonials
+      gsap.fromTo(".testimonial-item",
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: "power2.out",
+          scrollTrigger: { trigger: ".testimonials-section", start: "top 85%" } }
+      );
+
+      // DNA
+      gsap.fromTo(".dna-item",
         { scale: 0.9, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "back.out(1.4)",
-          scrollTrigger: {
-            trigger: ".dna-section",
-            start: "top 90%",
-          }
-        }
+        { scale: 1, opacity: 1, duration: 0.8, stagger: 0.15, ease: "back.out(1.4)",
+          scrollTrigger: { trigger: ".dna-section", start: "top 90%" } }
       );
     }, containerRef);
 
-    return () => {
-      clearTimeout(timer);
-      ctx.revert();
-    };
+    return () => { clearTimeout(timer); ctx.revert(); };
   }, []);
 
   return (
@@ -258,46 +241,42 @@ export default function StoriesPage() {
       <div className="h-[72px] shrink-0" />
 
       <main className="flex-1">
-        {/* Hero Section */}
+
+        {/* ── Hero ─────────────────────────────────────────────── */}
         <section className="pt-24 pb-20 px-6 relative overflow-hidden">
           <div className="absolute inset-0 -z-10">
             <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] animate-pulse" />
             <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px]" />
           </div>
-
           <div className="max-w-7xl mx-auto text-center relative z-10">
-            <motion.div 
-              className="hero-text inline-block px-4 py-1.5 rounded-lg bg-primary/10 text-primary font-mono text-sm font-bold mb-8 border border-primary/20"
-            >
-              {"<The Journey of Excellence/>"}
+            <motion.div className="hero-text inline-block px-4 py-1.5 rounded-lg bg-primary/10 text-primary font-mono text-sm font-bold mb-8 border border-primary/20">
+              {"<Our Work, Unfiltered/>"}
             </motion.div>
-            
             <h1 className="hero-text text-5xl md:text-8xl font-bold mb-8 leading-[1.05] tracking-tight">
-              Stories of <span className="text-primary italic">Success</span> <br />
-              & Lessons from <span className="text-muted-foreground italic">Failure.</span>
+              Wins We're Proud Of. <br />
+              <span className="text-muted-foreground italic">Lessons We Earned.</span>
             </h1>
-            
             <p className="hero-text text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-light leading-relaxed">
-              Real engineering isn't just about code—it's about the resilience to overcome challenges and the precision to scale successes.
+              We design, build, and ship digital products across web, mobile, e-commerce, and AI. Here's the honest record — the successes that defined us and the failures that made us better.
             </p>
           </div>
         </section>
 
-        {/* Live Stats Section */}
+        {/* ── Stats ────────────────────────────────────────────── */}
         <section className="py-24 stats-section border-y border-border/50 bg-secondary">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
               {GLOBAL_STATS.map((stat, i) => (
-                <div key={i} className="flex flex-col items-center text-center space-y-6 group">
-                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-500">
+                <div key={i} className="flex flex-col items-center text-center space-y-4 group">
+                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-500">
                     {stat.icon}
                   </div>
-                  <div className="space-y-2">
-                    <div className="text-6xl md:text-7xl font-black tracking-tighter text-white flex items-center justify-center">
+                  <div className="space-y-1">
+                    <div className="text-5xl md:text-6xl font-bold tracking-tighter text-white flex items-center justify-center">
                       <span className="stat-counter" data-value={stat.value}>0</span>
                       <span>{stat.suffix}</span>
                     </div>
-                    <div className="text-sm font-mono uppercase tracking-[0.3em] text-muted-foreground">{stat.label}</div>
+                    <div className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">{stat.label}</div>
                   </div>
                 </div>
               ))}
@@ -305,71 +284,73 @@ export default function StoriesPage() {
           </div>
         </section>
 
-        {/* Success Stories Section */}
-        <section className="py-32 px-6 success-section relative">
+        {/* ── Success Stories ──────────────────────────────────── */}
+        <section className="py-32 px-6 relative">
           <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-32 gap-6">
-              <div className="max-w-2xl">
-                <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">Success Stories</h2>
-                <p className="text-xl text-muted-foreground leading-relaxed">Pioneering solutions that define industry standards.</p>
+            <div className="mb-32">
+              <div className="inline-block px-4 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 font-mono text-sm font-bold mb-6 border border-emerald-500/20">
+                {"<Success Stories/>"}
               </div>
+              <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">Wins Worth Sharing</h2>
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
+                Projects that changed how our clients operate — measurable results, not just good-looking deliverables.
+              </p>
             </div>
 
             <div className="grid grid-cols-1 gap-48">
               {SUCCESS_STORIES.map((story, i) => (
-                <div 
+                <div
                   key={story.id}
-                  className={`story-anim-card flex flex-col ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-16 items-center`}
+                  data-dir={i % 2 === 0 ? "normal" : "reverse"}
+                  className={`story-anim-card flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-16 items-center`}
                 >
-                  {/* Image side - Sharp Edges & Increased Height */}
+                  {/* Image */}
                   <div className="story-image-box flex-1 w-full relative group">
-                    <div className="relative h-[500px] md:h-[650px] overflow-hidden border border-border/30 shadow-2xl bg-[#16161A]">
+                    <div className="relative h-[500px] md:h-[620px] overflow-hidden border border-border/30 shadow-2xl bg-[#16161A]">
                       <div className={`absolute inset-0 bg-gradient-to-br ${story.color} opacity-40 group-hover:opacity-10 transition-opacity duration-500 z-10`} />
-                      <img 
-                        src={story.image} 
-                        alt={story.title}
-                        width="1200"
-                        height="650"
+                      <img
+                        src={story.image} alt={story.title}
+                        width="1200" height="620"
                         className="w-full h-full object-cover transition-all duration-1000"
                         loading="lazy"
                       />
-                      <div className="absolute top-8 left-8 px-6 py-2 rounded-full bg-background/90 backdrop-blur-xl border border-white/10 text-primary font-mono text-sm font-bold z-20">
+                      <div className="absolute top-8 left-8 px-5 py-2 rounded-full bg-background/90 backdrop-blur-xl border border-white/10 text-primary font-mono text-sm font-bold z-20">
                         {story.tag}
                       </div>
                     </div>
                   </div>
 
-                  {/* Content side */}
+                  {/* Content */}
                   <div className="story-content-box flex-1 space-y-8">
                     <div className="flex items-center gap-4">
                       <div className="w-14 h-14 rounded-2xl bg-card border border-border flex items-center justify-center shadow-lg">
                         {story.icon}
                       </div>
-                      <span className="text-emerald-500 flex items-center gap-2 font-mono text-lg font-bold">
-                        <TrendingUp size={20} /> {story.impact}
+                      <span className="text-emerald-400 flex items-center gap-2 font-mono text-sm font-bold">
+                        <Zap size={14} /> {story.impact}
                       </span>
                     </div>
 
-                    <h3 className="text-4xl md:text-6xl font-bold leading-[1.1] tracking-tight">{story.title}</h3>
-                    <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">{story.desc}</p>
+                    <h3 className="text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight">{story.title}</h3>
+                    <p className="text-lg text-muted-foreground leading-relaxed font-light">{story.desc}</p>
 
-                    <div className="space-y-8 pt-10 border-t border-border/50">
-                      <div className="flex gap-6">
-                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                          <Target className="text-primary" size={24} />
+                    <div className="space-y-6 pt-8 border-t border-border/50">
+                      <div className="flex gap-5">
+                        <div className="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                          <Target className="text-primary" size={20} />
                         </div>
                         <div>
-                          <p className="text-sm font-bold uppercase text-muted-foreground mb-1 tracking-[0.2em] font-mono">The Challenge</p>
-                          <p className="text-xl font-medium leading-relaxed">{story.challenge}</p>
+                          <p className="text-xs font-bold uppercase text-muted-foreground mb-1 tracking-[0.2em] font-mono">The Challenge</p>
+                          <p className="text-base font-medium leading-relaxed">{story.challenge}</p>
                         </div>
                       </div>
-                      <div className="flex gap-6">
-                        <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0">
-                          <CheckCircle2 className="text-emerald-500" size={24} />
+                      <div className="flex gap-5">
+                        <div className="w-11 h-11 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0 mt-0.5">
+                          <CheckCircle2 className="text-emerald-500" size={20} />
                         </div>
                         <div>
-                          <p className="text-sm font-bold uppercase text-muted-foreground mb-1 tracking-[0.2em] font-mono">The Solution</p>
-                          <p className="text-xl font-medium leading-relaxed">{story.solution}</p>
+                          <p className="text-xs font-bold uppercase text-muted-foreground mb-1 tracking-[0.2em] font-mono">What We Built</p>
+                          <p className="text-base font-medium leading-relaxed">{story.solution}</p>
                         </div>
                       </div>
                     </div>
@@ -380,24 +361,67 @@ export default function StoriesPage() {
           </div>
         </section>
 
-        {/* The Process Section */}
-        <section className="py-40 px-6 process-section border-y border-border/50 bg-secondary relative z-20">
+        {/* ── Testimonials ─────────────────────────────────────── */}
+        <section className="py-32 px-6 testimonials-section border-y border-border/50 bg-secondary">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-20">
+              <div className="inline-block px-4 py-1.5 rounded-lg bg-primary/10 text-primary font-mono text-sm font-bold mb-6 border border-primary/20">
+                {"<Client Voices/>"}
+              </div>
+              <h2 className="text-4xl md:text-6xl font-bold leading-tight">What Clients Say</h2>
+              <p className="text-xl text-muted-foreground mt-4 max-w-xl mx-auto">Not curated marketing quotes. The things clients actually say when we ask for feedback.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {TESTIMONIALS.map((t, i) => (
+                <div key={i} className="testimonial-item group p-10 rounded-3xl bg-[#16161A] border border-border/30 hover:border-primary/40 transition-all duration-500 space-y-8 relative flex flex-col">
+                  <Quote size={32} className="text-primary/20 absolute top-8 right-8" />
+                  <p className="text-lg text-foreground/80 leading-relaxed relative z-10 flex-1">"{t.quote}"</p>
+                  <div className="flex items-center gap-4 pt-6 border-t border-border/40">
+                    <div className={`w-11 h-11 rounded-full ${t.color} flex items-center justify-center text-white font-bold text-xs shrink-0`}>
+                      {t.avatar}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-bold text-foreground text-sm">{t.name}</p>
+                      <p className="text-xs text-muted-foreground font-mono truncate">{t.role}</p>
+                    </div>
+                    <div className="flex gap-0.5 shrink-0">
+                      {[...Array(5)].map((_, s) => (
+                        <Star key={s} size={12} className="text-amber-400 fill-amber-400" />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Process ──────────────────────────────────────────── */}
+        <section className="py-40 px-6 process-section border-b border-border/50 bg-background relative z-20">
           <div className="max-w-7xl mx-auto text-center">
             <div className="inline-block px-4 py-1.5 rounded-lg bg-primary/10 text-primary font-mono text-sm font-bold mb-8 border border-primary/20">
               {"<How We Work/>"}
             </div>
-            <h2 className="text-4xl md:text-7xl font-black mb-24 leading-tight tracking-tight text-white">How We Turn Failure Into <span className="text-primary italic">Fuel</span></h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <h2 className="text-4xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
+              From Brief to <span className="text-primary italic">Live</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-24 leading-relaxed">
+              Four stages. No surprises. You always know exactly where your project stands.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {PROCESS_STEPS.map((step, i) => (
-                <div key={i} className="process-item group p-12 rounded-3xl bg-[#16161A] border border-border/30 hover:border-primary/50 transition-all duration-500 text-left space-y-8 relative overflow-hidden shadow-2xl">
-                  <div className={`absolute top-0 left-0 w-1 h-full bg-primary/0 group-hover:bg-primary transition-all duration-500`} />
-                  <div className={`w-16 h-16 rounded-2xl ${step.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-lg`}>
+                <div key={i} className="process-item group p-10 rounded-3xl bg-[#16161A] border border-border/30 hover:border-primary/50 transition-all duration-500 text-left space-y-6 relative overflow-hidden shadow-2xl">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-primary/0 group-hover:bg-primary transition-all duration-500" />
+                  <span className="text-5xl font-black text-primary/10 group-hover:text-primary/20 transition-colors font-mono leading-none block">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className={`w-14 h-14 rounded-2xl ${step.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}>
                     {step.icon}
                   </div>
-                  <div className="space-y-4">
-                    <h3 className="text-3xl font-bold text-white group-hover:text-primary transition-colors">{step.title}</h3>
-                    <p className="text-gray-400 text-xl leading-relaxed">{step.desc}</p>
+                  <div className="space-y-3">
+                    <h3 className="text-2xl font-bold text-white group-hover:text-primary transition-colors">{step.title}</h3>
+                    <p className="text-muted-foreground text-base leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
               ))}
@@ -405,67 +429,81 @@ export default function StoriesPage() {
           </div>
         </section>
 
-        {/* Failure & Lessons Section */}
+        {/* ── Failure Stories ──────────────────────────────────── */}
         <section className="py-32 px-6 failure-section bg-background">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center max-w-4xl mx-auto mb-32">
+            <div className="text-center max-w-3xl mx-auto mb-32">
+              <div className="inline-block px-4 py-1.5 rounded-lg bg-rose-500/10 text-rose-400 font-mono text-sm font-bold mb-8 border border-rose-500/20">
+                {"<Hard Lessons/>"}
+              </div>
               <h2 className="text-4xl md:text-7xl font-bold mb-8 leading-tight">Wisdom from Failure</h2>
-              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">True innovation requires the courage to fail and the intelligence to learn.</p>
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                Most agencies only show their wins. We show both — because the mistakes are where the real character is.
+              </p>
             </div>
 
             <div className="grid grid-cols-1 gap-48">
               {FAILURE_STORIES.map((story, i) => (
-                <div 
+                <div
                   key={story.id}
-                  className={`story-anim-card flex flex-col ${i % 2 !== 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-16 items-center`}
+                  data-dir={i % 2 !== 0 ? "normal" : "reverse"}
+                  className={`story-anim-card flex flex-col ${i % 2 !== 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-16 items-center`}
                 >
-                  {/* Image side - Sharp Edges & Increased Height */}
+                  {/* Image */}
                   <div className="story-image-box flex-1 w-full group">
-                    <div className="relative h-[500px] md:h-[650px] overflow-hidden border border-border/30 shadow-2xl bg-[#16161A]">
+                    <div className="relative h-[500px] md:h-[620px] overflow-hidden border border-border/30 shadow-2xl bg-[#16161A]">
                       <div className={`absolute inset-0 bg-gradient-to-br ${story.color} opacity-60 group-hover:opacity-20 transition-opacity duration-500 z-10`} />
-                      <img 
-                        src={story.image} 
-                        alt={story.title}
-                        width="1200"
-                        height="650"
-                        className="w-full h-full object-cover grayscale-[90%] group-hover:grayscale-0 transition-all duration-1000"
+                      <img
+                        src={story.image} alt={story.title}
+                        width="1200" height="620"
+                        className="w-full h-full object-cover grayscale-[80%] group-hover:grayscale-0 transition-all duration-1000"
                         loading="lazy"
                       />
-                      <div className="absolute top-8 left-8 px-6 py-2 rounded-full bg-background/90 backdrop-blur-xl border border-white/10 text-rose-500 font-mono text-sm font-bold z-20">
+                      <div className="absolute top-8 left-8 px-5 py-2 rounded-full bg-background/90 backdrop-blur-xl border border-white/10 text-rose-400 font-mono text-sm font-bold z-20">
                         {story.tag}
                       </div>
                     </div>
                   </div>
 
-                  {/* Content side */}
+                  {/* Content */}
                   <div className="story-content-box flex-1 space-y-8">
                     <div className="w-14 h-14 rounded-2xl bg-card border border-border flex items-center justify-center shadow-lg">
                       {story.icon}
                     </div>
+                    <h3 className="text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight">{story.title}</h3>
+                    <p className="text-lg text-muted-foreground leading-relaxed font-light">{story.desc}</p>
 
-                    <h3 className="text-4xl md:text-6xl font-bold leading-[1.1] tracking-tight">{story.title}</h3>
-                    <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">{story.desc}</p>
-
-                    <div className="space-y-10 pt-10 border-t border-border/50">
-                      <div className="flex gap-6">
-                        <div className="w-12 h-12 rounded-full bg-rose-500/10 flex items-center justify-center shrink-0">
-                          <AlertCircle className="text-rose-500" size={24} />
+                    <div className="space-y-6 pt-8 border-t border-border/50">
+                      <div className="flex gap-5">
+                        <div className="w-11 h-11 rounded-full bg-rose-500/10 flex items-center justify-center shrink-0 mt-0.5">
+                          <AlertCircle className="text-rose-500" size={20} />
                         </div>
                         <div>
-                          <p className="text-sm font-bold uppercase text-muted-foreground mb-1 tracking-[0.2em] font-mono">The Setback</p>
-                          <p className="text-xl font-medium leading-relaxed">{story.challenge}</p>
+                          <p className="text-xs font-bold uppercase text-muted-foreground mb-1 tracking-[0.2em] font-mono">What Went Wrong</p>
+                          <p className="text-base font-medium leading-relaxed">{story.challenge}</p>
                         </div>
                       </div>
-                      <div className="flex gap-6 relative">
-                        <div className="absolute -left-2 -top-2 text-primary/20 dark:text-primary/10">
-                          <Quote size={48} />
+
+                      <div className="flex gap-5">
+                        <div className="w-11 h-11 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0 mt-0.5">
+                          <ShieldCheck className="text-emerald-500" size={20} />
                         </div>
-                        <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center shrink-0 relative z-10">
-                          <Lightbulb className="text-amber-500" size={24} />
+                        <div>
+                          <p className="text-xs font-bold uppercase text-muted-foreground mb-1 tracking-[0.2em] font-mono">How We Fixed It</p>
+                          <p className="text-base font-medium leading-relaxed">{story.fix}</p>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-5 relative pt-2">
+                        <div className="absolute -left-1 -top-1 text-primary/10">
+                          <Quote size={40} />
+                        </div>
+                        <div className="w-11 h-11 rounded-full bg-amber-500/10 flex items-center justify-center shrink-0 relative z-10 mt-0.5">
+                          <Lightbulb className="text-amber-500" size={20} />
                         </div>
                         <div className="relative z-10">
-                          <p className="text-sm font-bold uppercase text-muted-foreground mb-1 tracking-[0.2em] font-mono">The Hard Lesson</p>
-                          <p className="text-2xl font-bold leading-relaxed italic text-foreground/90">"{story.lesson}"</p>
+                          <p className="text-xs font-bold uppercase text-muted-foreground mb-2 tracking-[0.2em] font-mono">The Lesson</p>
+                          <p className="text-xl font-bold leading-relaxed italic text-foreground/90">"{story.lesson}"</p>
                         </div>
                       </div>
                     </div>
@@ -476,42 +514,50 @@ export default function StoriesPage() {
           </div>
         </section>
 
-        {/* Success DNA Section */}
+        {/* ── DNA Section ──────────────────────────────────────── */}
         <section className="py-40 px-6 dna-section border-t border-border bg-background relative overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-          
+          <div
+            className="absolute inset-0 opacity-[0.03] pointer-events-none"
+            style={{ backgroundImage: "radial-gradient(circle, currentColor 1px, transparent 1px)", backgroundSize: "40px 40px" }}
+          />
           <div className="max-w-7xl mx-auto text-center relative z-10">
-            <h2 className="text-5xl md:text-8xl font-black mb-32 leading-tight tracking-tighter text-foreground">The Time Global DNA</h2>
-            
+            <div className="inline-block px-4 py-1.5 rounded-lg bg-primary/10 text-primary font-mono text-sm font-bold mb-8 border border-primary/20">
+              {"<Our Values/>"}
+            </div>
+            <h2 className="text-5xl md:text-8xl font-bold mb-6 leading-tight tracking-tighter">How We Operate</h2>
+            <p className="text-xl text-muted-foreground max-w-xl mx-auto mb-32">
+              Three principles that show up in every project — whether it's a mobile app, a web platform, or an AI integration.
+            </p>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-24 relative">
               <div className="hidden md:block absolute top-20 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/20 to-transparent -z-10" />
-              
-              <div className="dna-item group">
-                <div className="w-40 h-40 rounded-3xl bg-[#16161A] border-2 border-primary/20 flex items-center justify-center mx-auto mb-10 group-hover:rotate-[10deg] group-hover:border-primary group-hover:shadow-[0_0_50px_-12px_rgba(0,163,117,0.3)] transition-all duration-500 shadow-2xl relative">
-                  <div className="absolute inset-4 rounded-3xl bg-primary/5 group-hover:bg-primary/10 transition-colors" />
-                  <Target size={56} className="text-primary relative z-10" />
-                </div>
-                <h4 className="text-3xl font-bold mb-6 uppercase tracking-tighter text-foreground group-hover:text-primary transition-colors">Precision</h4>
-                <p className="text-muted-foreground text-xl leading-relaxed">Meticulous planning for every possible outcome.</p>
-              </div>
 
-              <div className="dna-item group">
-                <div className="w-40 h-40 rounded-3xl bg-[#16161A] border-2 border-primary/20 flex items-center justify-center mx-auto mb-10 group-hover:-rotate-[10deg] group-hover:border-primary group-hover:shadow-[0_0_50px_-12px_rgba(0,163,117,0.3)] transition-all duration-500 shadow-2xl relative">
-                  <div className="absolute inset-4 rounded-3xl bg-primary/5 group-hover:bg-primary/10 transition-colors" />
-                  <Users size={56} className="text-primary relative z-10" />
+              {[
+                {
+                  icon: <Target size={52} className="text-primary relative z-10" />,
+                  label: "Precision",
+                  desc: "We scope honestly. No padding estimates. No vague timelines. Every commitment is built from data, not optimism.",
+                },
+                {
+                  icon: <Users size={52} className="text-primary relative z-10" />,
+                  label: "Transparency",
+                  desc: "You see everything — progress, blockers, and trade-offs. No surprises at the end of a sprint.",
+                },
+                {
+                  icon: <TrendingUp size={52} className="text-primary relative z-10" />,
+                  label: "Ownership",
+                  desc: "We treat your product like it's ours. That means speaking up when something won't work, not just building what's asked.",
+                },
+              ].map((item, i) => (
+                <div key={i} className="dna-item group">
+                  <div className="w-36 h-36 rounded-3xl bg-[#16161A] border-2 border-primary/20 flex items-center justify-center mx-auto mb-10 group-hover:rotate-[8deg] group-hover:border-primary group-hover:shadow-[0_0_50px_-12px_rgba(0,163,117,0.3)] transition-all duration-500 shadow-2xl relative">
+                    <div className="absolute inset-4 rounded-2xl bg-primary/5 group-hover:bg-primary/10 transition-colors" />
+                    {item.icon}
+                  </div>
+                  <h4 className="text-3xl font-bold mb-5 uppercase tracking-tighter group-hover:text-primary transition-colors">{item.label}</h4>
+                  <p className="text-muted-foreground text-lg leading-relaxed max-w-xs mx-auto">{item.desc}</p>
                 </div>
-                <h4 className="text-3xl font-bold mb-6 uppercase tracking-tighter text-foreground group-hover:text-primary transition-colors">Empathy</h4>
-                <p className="text-muted-foreground text-xl leading-relaxed">Understanding client needs beyond technical specs.</p>
-              </div>
-
-              <div className="dna-item group">
-                <div className="w-40 h-40 rounded-3xl bg-[#16161A] border-2 border-primary/20 flex items-center justify-center mx-auto mb-10 group-hover:rotate-[10deg] group-hover:border-primary group-hover:shadow-[0_0_50px_-12px_rgba(0,163,117,0.3)] transition-all duration-500 shadow-2xl relative">
-                  <div className="absolute inset-4 rounded-3xl bg-primary/5 group-hover:bg-primary/10 transition-colors" />
-                  <Rocket size={56} className="text-primary relative z-10" />
-                </div>
-                <h4 className="text-3xl font-bold mb-6 uppercase tracking-tighter text-foreground group-hover:text-primary transition-colors">Resilience</h4>
-                <p className="text-muted-foreground text-xl leading-relaxed">Turning every setback into a strategic advantage.</p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
