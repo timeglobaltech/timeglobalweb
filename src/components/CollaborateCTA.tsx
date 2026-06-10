@@ -1,25 +1,137 @@
 import { useContactModal } from "@/hooks/use-contact-modal";
+import { motion } from "framer-motion";
 
 export default function CollaborateCTA() {
   const { openModal } = useContactModal();
 
   return (
-    <section className="py-32 px-6 bg-secondary text-secondary-foreground text-center relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-secondary to-secondary pointer-events-none"></div>
-      
+    <section className="py-32 px-6 bg-gradient-to-r from-secondary via-secondary to-secondary/80 text-secondary-foreground text-center relative overflow-hidden">
+      {/* Animated background effects */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Main radial gradient */}
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-[radial-gradient(circle,_var(--primary)_0%,_transparent_70%)] opacity-20"
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.2, 0.3, 0.2],
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* Animated grid */}
+        <motion.div
+          className="absolute inset-0 opacity-[0.03]"
+          animate={{ backgroundPosition: ["0px 0px", "40px 40px"] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
+
+        {/* Floating orbs */}
+        {[...Array(3)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full blur-[80px]"
+            style={{
+              width: 200 + i * 50,
+              height: 200 + i * 50,
+              background: "var(--primary)",
+              opacity: 0.08 - i * 0.02,
+              left: `${20 + i * 35}%`,
+              top: `${30 + i * 20}%`,
+            }}
+            animate={{
+              y: [0, 50, 0],
+              x: [0, 30 - i * 15, 0],
+            }}
+            transition={{
+              duration: 8 + i * 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.5,
+            }}
+          />
+        ))}
+      </div>
+
       <div className="max-w-4xl mx-auto relative z-10">
-        <h2 className="text-5xl md:text-7xl font-bold mb-8 text-white">
-          Collaborate with Us
-        </h2>
-        <p className="text-xl md:text-2xl text-secondary-foreground/80 mb-12 leading-relaxed">
-          Time Global invests in fresh ideas. We help entrepreneurs bring brilliant projects to market and turn them into profitable digital products.
-        </p>
-        <button 
-          onClick={openModal} 
-          className="px-10 py-5 rounded-xl bg-gradient-to-r from-primary to-emerald-600 text-white font-bold text-xl hover:shadow-2xl hover:shadow-primary/30 transition-all hover:opacity-90 btn-shimmer"
+        {/* Eyebrow */}
+        <motion.p
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="font-mono text-xs text-primary/80 tracking-[0.3em] uppercase mb-6"
         >
-          let's discuss your idea
-        </button>
+          Let's build together
+        </motion.p>
+
+        {/* Main heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-5xl md:text-7xl font-black mb-8 leading-[1.1]"
+        >
+          Ready to{" "}
+          <span className="bg-gradient-to-r from-primary via-primary/90 to-primary/70 bg-clip-text text-transparent">
+            collaborate?
+          </span>
+        </motion.h2>
+
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-lg md:text-xl text-secondary-foreground/85 mb-12 leading-relaxed max-w-2xl mx-auto"
+        >
+          Time Global invests in fresh ideas. We help entrepreneurs bring brilliant projects to market and turn them into profitable digital products.
+        </motion.p>
+
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center"
+        >
+          <motion.button
+            onClick={openModal}
+            whileHover={{ scale: 1.05, boxShadow: "0 25px 50px rgba(99, 102, 241, 0.4)" }}
+            whileTap={{ scale: 0.95 }}
+            className="px-10 py-5 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-white font-bold text-lg hover:shadow-2xl transition-all"
+          >
+            Let's discuss your idea →
+          </motion.button>
+
+          <motion.button
+            whileHover={{ scale: 1.05, borderColor: "var(--primary)" }}
+            whileTap={{ scale: 0.95 }}
+            className="px-10 py-5 rounded-xl border-2 border-white/30 text-white font-bold text-lg hover:border-white/60 transition-all hover:bg-white/5"
+          >
+            Learn more
+          </motion.button>
+        </motion.div>
+
+        {/* Trust indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-12 pt-12 border-t border-white/10"
+        >
+          <p className="text-sm text-secondary-foreground/60">
+            Limited availability this quarter • Average project timeline: 4-12 weeks
+          </p>
+        </motion.div>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ContactModalProvider } from "@/hooks/use-contact-modal";
 import { ThemeProvider } from "@/hooks/use-theme";
+import { Preloader } from "@/components/Preloader";
 import HomePage from "@/pages/HomePage";
 import WorkPage from "@/pages/WorkPage";
 import ServicesPage from "@/pages/ServicesPage";
@@ -43,6 +44,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <ContactModalProvider>
+            <Preloader />
             <Router />
             <ContactModal />
             <Toaster />
