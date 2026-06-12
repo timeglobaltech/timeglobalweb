@@ -284,7 +284,7 @@ export default function WhyUs() {
         - Negative margins are contextually handled across mobile vs desktop.
         - Clean inner padding balances navigation heights safely.
       */
-      className="w-full min-h-screen -mt-16 md:-mt-24 lg:-mt-32 bg-[#fafafa] dark:bg-[#050505] text-[#0a0a0a] dark:text-white pt-24 sm:pt-32 md:pt-40 pb-16 sm:pb-24 md:pb-32 font-sans overflow-hidden transition-colors duration-500"
+      className="w-full min-h-screen -mt-16 md:-mt-24 lg:-mt-32 bg-muted dark:bg-background text-foreground dark:text-white pt-24 sm:pt-32 md:pt-40 pb-16 sm:pb-24 md:pb-32 font-sans overflow-hidden transition-colors duration-500"
     >
       {/* Edge-to-Edge Top Border Line */}
       <div className="w-full border-t border-neutral-200 dark:border-neutral-900">
@@ -302,7 +302,7 @@ export default function WhyUs() {
               ))}
             </h2>
             
-            <p className="header-paragraph ml-14 text-neutral-500 dark:text-neutral-400 text-base sm:text-lg md:text-xl max-w-2xl leading-relaxed opacity-0 will-change-transform">
+            <p className="header-paragraph ml-14 text-neutral-500 dark:text-muted-foreground text-base sm:text-lg md:text-xl max-w-2xl leading-relaxed opacity-0 will-change-transform">
               Push boundaries with our tech. Turn your bold business ideas into outstanding digital products that redefine industries.
             </p>
           </div>
@@ -326,7 +326,7 @@ export default function WhyUs() {
               
               {/* 1. ID & Main Title */}
               <div className="flex flex-col gap-1 sm:gap-2 md:col-span-4 lg:col-span-3 select-none">
-                <span className="text-[10px] sm:text-xs font-mono tracking-widest text-neutral-400 dark:text-neutral-600">
+                <span className="text-[10px] sm:text-xs font-mono tracking-widest text-muted-foreground dark:text-neutral-600">
                   {service.id}
                 </span>
                 <h3 className="service-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-800 dark:text-white/90 will-change-transform origin-left transition-colors duration-300">
@@ -336,7 +336,7 @@ export default function WhyUs() {
 
               {/* 2. Middle Content Description */}
               <div className="md:col-span-5 lg:col-span-5 md:pt-5 lg:pt-6">
-                <p className="service-desc text-xs sm:text-sm md:text-base leading-relaxed text-neutral-500 dark:text-neutral-400 will-change-transform group-hover:text-neutral-800 dark:group-hover:text-neutral-300 transition-colors duration-300">
+                <p className="service-desc text-xs sm:text-sm md:text-base leading-relaxed text-neutral-500 dark:text-muted-foreground will-change-transform group-hover:text-neutral-800 dark:group-hover:text-neutral-300 transition-colors duration-300">
                   {service.description}
                 </p>
               </div>
@@ -347,7 +347,7 @@ export default function WhyUs() {
                   {service.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="service-tag text-[10px] sm:text-xs px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full border border-neutral-200 dark:border-neutral-900 text-neutral-400 dark:text-neutral-600 bg-transparent cursor-default whitespace-nowrap will-change-transform"
+                      className="service-tag text-[10px] sm:text-xs px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full border border-neutral-200 dark:border-neutral-900 text-muted-foreground dark:text-neutral-600 bg-transparent cursor-default whitespace-nowrap will-change-transform"
                     >
                       {tag}
                     </span>

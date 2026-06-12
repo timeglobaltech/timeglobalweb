@@ -168,7 +168,7 @@ function StudyCard({ s }: { s: CaseStudy }) {
         {/* Applied Technologies Pill Badges */}
         <div className="flex flex-wrap gap-1.5 mb-5 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
           {s.technologies.map((tech) => (
-            <span key={tech} className="text-[10px] font-mono font-medium text-neutral-400 bg-white/5 border border-white/5 px-2 py-0.5 rounded">
+            <span key={tech} className="text-[10px] font-mono font-medium text-muted-foreground bg-white/5 border border-white/5 px-2 py-0.5 rounded">
               {tech}
             </span>
           ))}
@@ -192,7 +192,7 @@ function StudyCard({ s }: { s: CaseStudy }) {
 
 function CtaCard() {
   return (
-    <article className="group relative shrink-0 w-[85vw] sm:w-[65vw] lg:w-[600px] h-[580px] sm:h-[660px] lg:h-[740px] bg-[#0a0a0c] border border-white/5 isolate flex flex-col justify-between rounded-sm">
+    <article className="group relative shrink-0 w-[85vw] sm:w-[65vw] lg:w-[600px] h-[580px] sm:h-[660px] lg:h-[740px] bg-secondary border border-white/5 isolate flex flex-col justify-between rounded-sm">
       <div className="p-6 sm:p-8">
         <span className="text-[9px] font-mono tracking-widest font-bold uppercase px-2.5 py-1 bg-white/5 border border-white/10 text-neutral-500">
           Next Step
@@ -268,7 +268,7 @@ export function CaseStudySlider() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative bg-[#050507] text-white w-full py-12 md:py-20 lg:py-0">
+    <section ref={sectionRef} className="relative bg-background dark:bg-secondary text-white w-full py-12 md:py-20 lg:py-0">
       <div className="min-h-screen lg:h-screen lg:min-h-[900px] flex flex-col justify-center">
 
         {/* Header Title Grid */}
@@ -286,7 +286,7 @@ export function CaseStudySlider() {
               </span>
             </h2>
 
-            <p className="text-xl text-neutral-400 max-w-md leading-relaxed font-light pb-1">
+            <p className="text-xl text-muted-foreground max-w-md leading-relaxed font-light pb-1">
      We create premium digital experiences,
 interactive websites, creative portfolios,
 and business solutions that combine

@@ -13,7 +13,7 @@ import { CaseStudySlider } from "@/components/CaseStudySlider";
 export default function HomePage() {
   return (
     <div className="min-h-[100dvh] w-full flex flex-col bg-background font-sans text-foreground">
-      {/* Fixed bars: navbar (72px) */}
+     
       <Navbar />
       {/* Spacer to push content below fixed bars */}
       <div className="h-[72px] shrink-0" />

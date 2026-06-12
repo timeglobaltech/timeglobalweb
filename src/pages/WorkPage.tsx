@@ -5,7 +5,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServicesGrid from "@/components/ServicesGrid";
-import IndustryShowcase from "@/components/IndustryShowcase";
 import TeamSnapshot from "@/components/TeamSnapshot";
 import Testimonials from "@/components/Testimonials";
 import Awards from "@/components/Awards";
@@ -13,9 +12,21 @@ import BlogPreview from "@/components/BlogPreview";
 import FAQ from "@/components/FAQ";
 import CollaborateCTA from "@/components/CollaborateCTA";
 import { HeroAnimatedIcons } from "@/components/HeroAnimatedIcons";
-import ModernHero from "@/components/ModernHero";
+import { ProjectCard, type ProjectCardProps } from "@/components/ProjectCard";
+
+ 
+// ─── Project image placeholders (swap for real imports once you have the files) ─
+const aviva        = "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1024&q=80"; // CRM / insurance dashboard
+const aidify       = "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1024&q=80"; // AI / recommendation engine
+const bnp          = "https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=1024&q=80"; // mobile banking app
+const brainly      = "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1024&q=80"; // students / edtech platform
+const caliber      = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1024&q=80"; // candidate / HR scoring
+const brainlyTutor = "https://images.unsplash.com/photo-1619209629065-e9a2b225b24b?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"; // 1-on-1 tutoring mobile
+const fitly        = "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=1024&q=80"; // fitness / running tracker
 
 gsap.registerPlugin(ScrollTrigger);
+
+// ─── Stats ────────────────────────────────────────────────────────────────────
 
 const STATS = [
   { value: "200+", label: "Projects Shipped" },
@@ -24,7 +35,8 @@ const STATS = [
   { value: "12+", label: "Years Delivering" },
 ];
 
-// ─── Updated CASE_STUDIES with gradient backgrounds & tags ───────────────────
+// ─── Case Studies ─────────────────────────────────────────────────────────────
+
 const CASE_STUDIES = [
   {
     tags: ["FinTech", "Cloud"],
@@ -34,7 +46,7 @@ const CASE_STUDIES = [
     metrics: ["42% cost cut", "8 min deploys", "99.98% uptime"],
     img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=900",
     bgGradient: "linear-gradient(145deg, #0f0c29, #302b63, #24243e)",
-    span: "normal", // "normal" | "tall"
+    span: "normal" as const,
   },
   {
     tags: ["Web Apps", "Migration"],
@@ -44,7 +56,7 @@ const CASE_STUDIES = [
     metrics: ["0 downtime", "3× faster load", "62% less bugs"],
     img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=900",
     bgGradient: "linear-gradient(145deg, #0a2e1a, #0d4a28, #0a3d20)",
-    span: "tall",
+    span: "tall" as const,
   },
   {
     tags: ["Mobile", "Healthcare"],
@@ -54,7 +66,7 @@ const CASE_STUDIES = [
     metrics: ["500k+ users", "4.8★ App Store", "14 wks shipped"],
     img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=900",
     bgGradient: "linear-gradient(145deg, #1a0533, #3b0764, #2d0550)",
-    span: "normal",
+    span: "normal" as const,
   },
   {
     tags: ["Data & AI", "Logistics"],
@@ -64,7 +76,7 @@ const CASE_STUDIES = [
     metrics: ["$2M saved", "28% less fuel", "Real-time ETAs"],
     img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=900",
     bgGradient: "linear-gradient(145deg, #001a2e, #003052, #00213d)",
-    span: "tall",
+    span: "tall" as const,
   },
   {
     tags: ["E-Commerce", "Mobile"],
@@ -74,7 +86,7 @@ const CASE_STUDIES = [
     metrics: ["$1M GMV/mo", "RTL + LTR", "3 wk delivery"],
     img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=900",
     bgGradient: "linear-gradient(145deg, #2d0a1a, #5c1030, #450d24)",
-    span: "normal",
+    span: "normal" as const,
   },
   {
     tags: ["Web Apps", "EdTech"],
@@ -84,11 +96,69 @@ const CASE_STUDIES = [
     metrics: ["80k concurrent", "2.1s p95", "Auto-scales"],
     img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=900",
     bgGradient: "linear-gradient(145deg, #0a1a2e, #102a47, #0c2038)",
-    span: "normal",
+    span: "normal" as const,
   },
 ];
 
 type CaseStudy = typeof CASE_STUDIES[0];
+
+// ─── Projects ─────────────────────────────────────────────────────────────────
+
+const projects: Omit<ProjectCardProps, "index">[] = [
+  {
+    image: brainly,
+    title: "Brainly",
+    description: "Educational networking platform reimagined for the next generation of learners.",
+    tags: ["EdTech", "Web"],
+    technologies: ["React", "Tailwind", "Postgres"],
+    wide: true,
+  },
+  {
+    image: aviva,
+    title: "Aviva",
+    description: "CRM app for insurance agents",
+    tags: ["FinTech", "Mobile"],
+    technologies: ["React Native", "TypeScript", "Node.js"],
+  },
+  {
+    image: aidify,
+    title: "AIDIFY",
+    description: "Content recommendation engine",
+    tags: ["Other Industries", "AI"],
+    technologies: ["Next.js", "Python", "TensorFlow"],
+  },
+  {
+    image: bnp,
+    title: "BNP Paribas",
+    description: "Innovative mobile banking app",
+    tags: ["FinTech", "Mobile"],
+    technologies: ["Swift", "Kotlin", "GraphQL"],
+  },
+  {
+    image: caliber,
+    title: "Caliber",
+    description: "Business candidate scoring tool",
+    tags: ["HR Tech", "AI"],
+    technologies: ["Next.js", "OpenAI", "Prisma"],
+  },
+  {
+    image: fitly,
+    title: "Fitly",
+    description: "Personalised fitness tracking on the go",
+    tags: ["Health", "Mobile"],
+    technologies: ["Flutter", "Firebase", "Dart"],
+  },
+  {
+    image: brainlyTutor,
+    title: "Brainly Tutor",
+    description: "Education association anytime, anywhere — one-on-one expert help in your pocket.",
+    tags: ["EdTech", "Mobile"],
+    technologies: ["React Native", "Node.js", "WebRTC"],
+    wide: true,
+  },
+];
+
+// ─── AnimatedCounter ──────────────────────────────────────────────────────────
 
 function AnimatedCounter({ value }: { value: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -116,13 +186,12 @@ function AnimatedCounter({ value }: { value: string }) {
   return <span ref={ref}>{display}</span>;
 }
 
-// ─── New PortfolioCard matching the reference image style ────────────────────
+// ─── PortfolioCard ────────────────────────────────────────────────────────────
+
 function PortfolioCard({ cs, index }: { cs: CaseStudy; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const [hovered, setHovered] = useState(false);
-
-  // Alternate tall cards to create staggered masonry rhythm
   const isTall = cs.span === "tall";
 
   return (
@@ -130,27 +199,20 @@ function PortfolioCard({ cs, index }: { cs: CaseStudy; index: number }) {
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{
-        duration: 0.6,
-        delay: (index % 3) * 0.1,
-        ease: [0.22, 1, 0.36, 1],
-      }}
+      transition={{ duration: 0.6, delay: (index % 3) * 0.1, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="relative rounded-2xl overflow-hidden cursor-pointer"
       style={{
         background: cs.bgGradient,
-        // Tall cards span 2 grid rows for masonry effect
         gridRow: isTall ? "span 2" : "span 1",
         minHeight: isTall ? "480px" : "320px",
         transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease",
         transform: hovered ? "scale(1.018)" : "scale(1)",
-        boxShadow: hovered
-          ? "0 24px 60px rgba(0,0,0,0.5)"
-          : "0 4px 20px rgba(0,0,0,0.3)",
+        boxShadow: hovered ? "0 24px 60px rgba(0,0,0,0.5)" : "0 4px 20px rgba(0,0,0,0.3)",
       }}
     >
-      {/* Subtle image overlay — faded into the gradient */}
+      {/* Faded image overlay */}
       <div className="absolute inset-0 overflow-hidden">
         <img
           src={cs.img}
@@ -164,7 +226,7 @@ function PortfolioCard({ cs, index }: { cs: CaseStudy; index: number }) {
         />
       </div>
 
-      {/* Noise texture overlay for depth */}
+      {/* Noise texture */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -176,7 +238,7 @@ function PortfolioCard({ cs, index }: { cs: CaseStudy; index: number }) {
       />
 
       <div className="relative z-10 flex flex-col h-full p-5" style={{ minHeight: "inherit" }}>
-        {/* ── Top row: tags + expand button ── */}
+        {/* Top row: tags + expand icon */}
         <div className="flex items-start justify-between gap-2">
           <div className="flex flex-wrap gap-1.5">
             {cs.tags.map((tag) => (
@@ -195,8 +257,6 @@ function PortfolioCard({ cs, index }: { cs: CaseStudy; index: number }) {
               </span>
             ))}
           </div>
-
-          {/* Circular expand button */}
           <motion.div
             className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
             style={{
@@ -219,7 +279,7 @@ function PortfolioCard({ cs, index }: { cs: CaseStudy; index: number }) {
           </motion.div>
         </div>
 
-        {/* ── Middle: decorative screen mockup for tall cards ── */}
+        {/* Mockup image for tall cards */}
         {isTall && (
           <div className="flex-1 flex items-center justify-center py-6">
             <div
@@ -241,16 +301,9 @@ function PortfolioCard({ cs, index }: { cs: CaseStudy; index: number }) {
           </div>
         )}
 
-        {/* ── Bottom: client + title + description ── */}
+        {/* Bottom: client, title, description, metrics */}
         <div className="mt-auto">
-          {/* Divider line */}
-          <div
-            className="mb-4"
-            style={{
-              height: "0.5px",
-              background: "rgba(255,255,255,0.12)",
-            }}
-          />
+          <div className="mb-4" style={{ height: "0.5px", background: "rgba(255,255,255,0.12)" }} />
 
           <p
             className="text-[10px] uppercase tracking-[0.18em] mb-1.5"
@@ -259,15 +312,20 @@ function PortfolioCard({ cs, index }: { cs: CaseStudy; index: number }) {
             {cs.client}
           </p>
 
-          <h3 className="text-[17px] font-bold leading-snug mb-2" style={{ color: "rgba(255,255,255,0.95)" }}>
+          <h3
+            className="text-[17px] font-bold leading-snug mb-2"
+            style={{ color: "rgba(255,255,255,0.95)" }}
+          >
             {cs.title}
           </h3>
 
-          <p className="text-[12px] leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.55)" }}>
+          <p
+            className="text-[12px] leading-relaxed mb-4"
+            style={{ color: "rgba(255,255,255,0.55)" }}
+          >
             {cs.outcome}
           </p>
 
-          {/* Metrics — animate in on hover */}
           <motion.div
             className="flex flex-wrap gap-2"
             initial={{ opacity: 0, y: 6 }}
@@ -293,6 +351,8 @@ function PortfolioCard({ cs, index }: { cs: CaseStudy; index: number }) {
     </motion.div>
   );
 }
+
+// ─── WorkPage ─────────────────────────────────────────────────────────────────
 
 export default function WorkPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -331,8 +391,9 @@ export default function WorkPage() {
         <div className="h-[72px] shrink-0" />
 
         <main className="flex-1" ref={containerRef}>
+
           {/* 1. HERO */}
-          <section ref={heroRef} className="relative pt-32 pb-64 px-6 overflow-hidden min-h-[85vh] flex items-center">
+          <section ref={heroRef} className="relative pt-32 pb-64 px-6 overflow-hidden min-h-[100vh] flex items-center">
             <div className="absolute inset-0 pointer-events-none">
               <motion.div
                 className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-primary/12 rounded-full blur-[160px]"
@@ -359,7 +420,6 @@ export default function WorkPage() {
                 backgroundSize: "50px 50px",
               }}
             />
-
             <div
               className="absolute inset-0 pointer-events-none"
               style={{ background: "radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.25) 100%)" }}
@@ -425,13 +485,12 @@ export default function WorkPage() {
             </motion.div>
           </section>
 
-          {/* 2. STATS COUNTER */}
-          <section className="border-y border-border/60 bg-gradient-to-r from-secondary/30 via-secondary/20 to-secondary/30 py-16 px-6 relative overflow-hidden">
+          {/* 2. STATS */}
+          <section className="border-y mt-[-20px] border-border/60 bg-gradient-to-r from-secondary/30 via-secondary/20 to-secondary/30 py-16 px-6 relative overflow-hidden">
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
               <div className="absolute top-1/2 left-0 w-[400px] h-[200px] bg-primary/5 rounded-full blur-[100px]" />
               <div className="absolute top-1/2 right-0 w-[400px] h-[200px] bg-primary/5 rounded-full blur-[100px]" />
             </div>
-
             <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 relative z-10">
               {STATS.map((s, i) => (
                 <motion.div
@@ -457,87 +516,63 @@ export default function WorkPage() {
             </div>
           </section>
 
-          {/* 4. SERVICES GRID */}
-          <ServicesGrid />
+        
 
-          {/* 6. PORTFOLIO GRID */}
-          <section className="py-32 px-6 relative overflow-hidden bg-gradient-to-b from-background via-background to-background/50">
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-              <motion.div
-                className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/8 rounded-full blur-[120px]"
-                animate={{ scale: [1, 1.1, 1], opacity: [0.08, 0.12, 0.08] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <motion.div
-                className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-primary/8 rounded-full blur-[120px]"
-                animate={{ scale: [1, 1.15, 1], opacity: [0.08, 0.1, 0.08] }}
-                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-              />
-            </div>
-
-            <div className="max-w-7xl mx-auto relative z-10">
-              {/* Header */}
+          {/* 4. SELECTED WORK (ProjectCard grid) */}
+          <section className="py-24 px-6 border-t border-border/40">
+            <div className="max-w-7xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6 }}
-                className="mb-16 text-center"
+                className="mb-14"
               >
-                <p className="font-mono text-xs text-primary tracking-[0.2em] uppercase mb-4">Our Portfolio</p>
-                <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-4">Proof, not promises.</h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Real results from real engagements. See how we've transformed businesses across industries with measurable impact.
+                <div className="inline-flex w-fit items-center gap-2 rounded-full border border-border/60 bg-background/60 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur-md mb-6">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                  Selected Work
+                </div>
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
+                  Products we've built,
+                  <br />
+                  <span className="bg-gradient-to-r from-primary via-foreground to-primary bg-clip-text text-transparent">
+                    loved by millions.
+                  </span>
+                </h2>
+                <p className="text-muted-foreground max-w-xl leading-relaxed">
+                  A glimpse into recent collaborations spanning fintech, AI, education and more.
+                  Every project is engineered with craft, shipped with intent.
                 </p>
               </motion.div>
 
-              {/*
-                ── Masonry Grid ──────────────────────────────────────────────
-                Uses CSS grid-auto-rows with fixed row height so cards with
-                span="tall" naturally sit taller via gridRow:"span 2".
-                The grid auto-places cards and fills gaps organically.
-              */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6 }}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(1, 1fr)",
-                  gridAutoRows: "240px",
-                  gap: "20px",
-                }}
-                className="md:[grid-template-columns:repeat(2,1fr)] lg:[grid-template-columns:repeat(3,1fr)]"
-              >
-                {CASE_STUDIES.map((cs, i) => (
-                  <PortfolioCard key={cs.title} cs={cs} index={i} />
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+                {projects.map((p, i) => (
+                  <ProjectCard key={p.title} index={i} {...p} />
                 ))}
-              </motion.div>
+              </div>
             </div>
           </section>
-<ModernHero/>
-        
-          {/* 8. TEAM SNAPSHOT */}
+
+          {/* 6. TEAM SNAPSHOT */}
           <TeamSnapshot />
 
-          {/* 10. TESTIMONIALS */}
+          {/* 7. TESTIMONIALS */}
           <Testimonials />
 
-          {/* 11. AWARDS & RECOGNITION */}
+          {/* 8. AWARDS */}
           <Awards />
 
-          {/* 12. BLOG PREVIEW */}
+          {/* 9. BLOG PREVIEW */}
           <BlogPreview />
 
-          {/* 13. FAQ */}
+          {/* 10. FAQ */}
           <FAQ />
 
-          {/* 14. CTA / CONTACT */}
+          {/* 11. CTA */}
           <CollaborateCTA />
+
         </main>
 
-        {/* 15. FOOTER */}
         <Footer />
       </div>
     </>

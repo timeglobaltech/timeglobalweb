@@ -101,7 +101,7 @@ export default function ModernHero() {
             <div className="flex items-end justify-between mb-2">
               <div
                 ref={labelRef}
-                className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400"
+                className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground"
               >
                 INITIALIZING
               </div>

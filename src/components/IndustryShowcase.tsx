@@ -175,7 +175,7 @@ function WorkflowMockup() {
   ];
 
   return (
-    <div className="bg-[#0c0c14] rounded-2xl border border-white/10 shadow-2xl overflow-hidden w-full flex flex-col">
+    <div className="bg-secondary rounded-2xl border border-white/10 shadow-2xl overflow-hidden w-full flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/[0.06] bg-white/[0.02] shrink-0">
         <div className="flex items-center gap-2.5">
@@ -302,9 +302,9 @@ function DashboardMockup() {
   ];
 
   return (
-    <div className="bg-[#0d0d16] rounded-2xl border border-white/10 shadow-2xl overflow-hidden z-10 w-full aspect-video flex">
+    <div className="bg-secondary rounded-2xl border border-white/10 shadow-2xl overflow-hidden z-10 w-full aspect-video flex">
       {/* Sidebar */}
-      <div className="w-11 sm:w-14 bg-[#07070d] border-r border-white/[0.06] flex flex-col items-center py-3 gap-3 shrink-0">
+      <div className="w-11 sm:w-14 bg-secondary border-r border-white/[0.06] flex flex-col items-center py-3 gap-3 shrink-0">
         <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center mb-1">
           <span className="text-primary text-[9px] sm:text-[10px] font-black">TG</span>
         </div>
@@ -424,7 +424,7 @@ function GlobalMockup() {
   };
 
   return (
-    <div className="bg-[#0c0c14] rounded-2xl border border-white/10 shadow-2xl overflow-hidden z-10 w-full aspect-video flex flex-col">
+    <div className="bg-secondary rounded-2xl border border-white/10 shadow-2xl overflow-hidden z-10 w-full aspect-video flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between px-3 sm:px-4 py-2.5 border-b border-white/[0.06] bg-white/[0.02] shrink-0">
         <div className="flex items-center gap-2">

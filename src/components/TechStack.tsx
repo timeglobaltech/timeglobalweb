@@ -165,7 +165,7 @@ function TechOrbitRing({
               {/* glow ring */}
               <div className="absolute -inset-2 rounded-full bg-white/5 blur-sm group-hover:bg-purple-500/20 transition-colors duration-300" />
               {/* icon bubble */}
-              <div className="relative w-9 h-9 flex items-center justify-center bg-[#13131f] border border-white/10 rounded-full shadow-lg group-hover:border-purple-400/50 transition-all duration-300">
+              <div className="relative w-9 h-9 flex items-center justify-center bg-secondary border border-white/10 rounded-full shadow-lg group-hover:border-purple-400/50 transition-all duration-300">
                 <entry.icon
                   size={18}
                   style={{ color: entry.color }}
@@ -224,7 +224,7 @@ function CountryOrbitRing({
           >
             <div className="relative group">
               <div className="absolute -inset-2 rounded-full bg-white/5 blur-sm group-hover:bg-blue-500/20 transition-colors duration-300" />
-              <div className="relative w-11 h-11 flex items-center justify-center bg-[#13131f] border border-white/10 rounded-full shadow-lg group-hover:border-blue-400/40 transition-all duration-300 overflow-hidden">
+              <div className="relative w-11 h-11 flex items-center justify-center bg-secondary border border-white/10 rounded-full shadow-lg group-hover:border-blue-400/40 transition-all duration-300 overflow-hidden">
                 <img
                   src={`https://flagcdn.com/w40/${country.flag}.png`}
                   srcSet={`https://flagcdn.com/w80/${country.flag}.png 2x`}

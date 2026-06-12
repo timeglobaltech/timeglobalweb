@@ -129,13 +129,22 @@
     @apply border-border;
   }
   body {
-    @apply bg-bg-base text-zinc-900 font-sans antialiased;
+    @apply bg-background text-foreground font-sans antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-display;
   }
   code {
     @apply font-mono;
+  }
+}
+
+@layer utilities {
+  .section-padding {
+    @apply py-24 md:py-32;
+  }
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6;
   }
 }
 

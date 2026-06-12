@@ -320,19 +320,19 @@ export default function CareersPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-24">
               <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">Our Core Values</h2>
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto">The principles that guide every line of code we write and every decision we make.</p>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">The principles that guide every line of code we write and every decision we make.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {VALUES.map((val, i) => (
-                <div key={i} className="value-card group p-10 rounded-3xl bg-[#16161A] border border-border/30 hover:border-primary/50 transition-all duration-500 text-left space-y-8 shadow-2xl relative overflow-hidden">
+                <div key={i} className="value-card group p-10 rounded-3xl bg-card dark:bg-secondary border border-border/30 hover:border-primary/50 transition-all duration-500 text-left space-y-8 shadow-2xl relative overflow-hidden">
                   <div className={`absolute inset-0 bg-gradient-to-br ${val.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
                   <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
                     {val.icon}
                   </div>
                   <div className="space-y-4">
                     <h3 className="text-2xl font-bold text-white group-hover:text-primary transition-colors">{val.title}</h3>
-                    <p className="text-gray-400 text-lg leading-relaxed">{val.desc}</p>
+                    <p className="text-muted-foreground text-lg leading-relaxed">{val.desc}</p>
                   </div>
                 </div>
               ))}
@@ -407,7 +407,7 @@ export default function CareersPage() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ duration: 0.4 }}
-                      className="opening-card group flex flex-col md:flex-row md:items-center justify-between p-8 md:p-10 bg-[#16161A] border border-border/30 hover:border-primary/50 transition-all duration-500 rounded-3xl shadow-xl"
+                      className="opening-card group flex flex-col md:flex-row md:items-center justify-between p-8 md:p-10 bg-card dark:bg-secondary border border-border/30 hover:border-primary/50 transition-all duration-500 rounded-3xl shadow-xl"
                     >
                       <div className="space-y-4">
                         <div className="flex flex-wrap items-center gap-3">
@@ -417,7 +417,7 @@ export default function CareersPage() {
                           </span>
                         </div>
                         <h3 className="text-3xl font-bold text-white group-hover:text-primary transition-colors">{job.role}</h3>
-                        <div className="flex items-center gap-6 text-gray-400 font-medium">
+                        <div className="flex items-center gap-6 text-muted-foreground font-medium">
                           <span className="flex items-center gap-2"><Clock size={18} /> {job.type}</span>
                           <span className="flex items-center gap-2 text-primary/80 font-mono">{job.salary}</span>
                         </div>
@@ -431,7 +431,7 @@ export default function CareersPage() {
                     </motion.div>
                   ))
                 ) : (
-                  <div className="text-center py-20 bg-[#16161A] rounded-3xl border border-dashed border-border">
+                  <div className="text-center py-20 bg-card dark:bg-secondary rounded-3xl border border-dashed border-border">
                     <p className="text-xl text-muted-foreground mb-6">No positions found in this department.</p>
                     <button 
                       onClick={() => setActiveDept("All")}
@@ -498,7 +498,7 @@ export default function CareersPage() {
           <div className="max-w-7xl mx-auto px-6 mb-24">
             <div className="text-center">
               <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">Life at Time Global</h2>
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto">Hear directly from the people building the future of global technology.</p>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Hear directly from the people building the future of global technology.</p>
             </div>
           </div>
 
@@ -515,14 +515,14 @@ export default function CareersPage() {
               {[...EMPLOYEE_STORIES, ...EMPLOYEE_STORIES].map((story, i) => (
                 <div 
                   key={i} 
-                  className="inline-block w-[450px] whitespace-normal group p-10 rounded-3xl bg-[#16161A] border border-border/30 hover:border-primary/50 transition-all duration-500 relative shadow-2xl"
+                  className="inline-block w-[450px] whitespace-normal group p-10 rounded-3xl bg-card dark:bg-secondary border border-border/30 hover:border-primary/50 transition-all duration-500 relative shadow-2xl"
                 >
                   <div className="absolute top-10 right-10 text-primary/20 group-hover:text-primary/40 transition-colors">
                     <Quote size={80} />
                   </div>
                   
                   <div className="relative z-10 space-y-8">
-                    <p className="text-2xl text-gray-300 leading-relaxed italic font-light">
+                    <p className="text-2xl text-foreground/70 leading-relaxed italic font-light">
                       "{story.quote}"
                     </p>
                     

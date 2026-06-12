@@ -374,7 +374,7 @@ function IconShell({
       </div>
 
       {/* Under-card label text */}
-      <span className="absolute -bottom-7 left-0 right-0 text-center font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-400 whitespace-nowrap transition-colors duration-300">
+      <span className="absolute -bottom-7 left-0 right-0 text-center font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground whitespace-nowrap transition-colors duration-300">
         {label}
       </span>
 
@@ -403,7 +403,7 @@ function IconShell({
             <h4 className="font-sans text-xs font-semibold tracking-wide text-neutral-100 mb-2">
               {popupTitle}
             </h4>
-            <p className="font-sans text-[11px] leading-relaxed text-neutral-400">
+            <p className="font-sans text-[11px] leading-relaxed text-muted-foreground">
               {popupDescription}
             </p>
 

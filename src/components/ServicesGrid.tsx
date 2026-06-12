@@ -552,7 +552,7 @@ function ServiceCard({
         {service.title}
       </h3>
 
-      <p className="relative z-10 text-sm text-zinc-400 font-normal leading-relaxed group-hover:text-zinc-300 transition-colors line-clamp-3">
+      <p className="relative z-10 text-sm text-muted-foreground font-normal leading-relaxed group-hover:text-zinc-300 transition-colors line-clamp-3">
         {service.desc}
       </p>
 

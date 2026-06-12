@@ -254,7 +254,7 @@ export default function StoriesPage() {
             </motion.div>
             <h1 className="hero-text text-5xl md:text-8xl font-bold mb-8 leading-[1.05] tracking-tight">
               Wins We're Proud Of. <br />
-              <span className="text-muted-foreground italic">Lessons We Earned.</span>
+              <span className="text-primary italic">Lessons We Earned.</span>
             </h1>
             <p className="hero-text text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-light leading-relaxed">
               We design, build, and ship digital products across web, mobile, e-commerce, and AI. Here's the honest record — the successes that defined us and the failures that made us better.
@@ -306,7 +306,7 @@ export default function StoriesPage() {
                 >
                   {/* Image */}
                   <div className="story-image-box flex-1 w-full relative group">
-                    <div className="relative h-[500px] md:h-[620px] overflow-hidden border border-border/30 shadow-2xl bg-[#16161A]">
+                    <div className="relative h-[500px] md:h-[620px] overflow-hidden border border-border/30 shadow-2xl bg-card dark:bg-secondary">
                       <div className={`absolute inset-0 bg-gradient-to-br ${story.color} opacity-40 group-hover:opacity-10 transition-opacity duration-500 z-10`} />
                       <img
                         src={story.image} alt={story.title}
@@ -373,7 +373,7 @@ export default function StoriesPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {TESTIMONIALS.map((t, i) => (
-                <div key={i} className="testimonial-item group p-10 rounded-3xl bg-[#16161A] border border-border/30 hover:border-primary/40 transition-all duration-500 space-y-8 relative flex flex-col">
+                <div key={i} className="testimonial-item group p-10 rounded-3xl bg-card dark:bg-secondary border border-border/30 hover:border-primary/40 transition-all duration-500 space-y-8 relative flex flex-col">
                   <Quote size={32} className="text-primary/20 absolute top-8 right-8" />
                   <p className="text-lg text-foreground/80 leading-relaxed relative z-10 flex-1">"{t.quote}"</p>
                   <div className="flex items-center gap-4 pt-6 border-t border-border/40">
@@ -411,7 +411,7 @@ export default function StoriesPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {PROCESS_STEPS.map((step, i) => (
-                <div key={i} className="process-item group p-10 rounded-3xl bg-[#16161A] border border-border/30 hover:border-primary/50 transition-all duration-500 text-left space-y-6 relative overflow-hidden shadow-2xl">
+                <div key={i} className="process-item group p-10 rounded-3xl bg-card dark:bg-secondary border border-border/30 hover:border-primary/50 transition-all duration-500 text-left space-y-6 relative overflow-hidden shadow-2xl">
                   <div className="absolute top-0 left-0 w-1 h-full bg-primary/0 group-hover:bg-primary transition-all duration-500" />
                   <span className="text-5xl font-black text-primary/10 group-hover:text-primary/20 transition-colors font-mono leading-none block">
                     {String(i + 1).padStart(2, "0")}
@@ -451,7 +451,7 @@ export default function StoriesPage() {
                 >
                   {/* Image */}
                   <div className="story-image-box flex-1 w-full group">
-                    <div className="relative h-[500px] md:h-[620px] overflow-hidden border border-border/30 shadow-2xl bg-[#16161A]">
+                    <div className="relative h-[500px] md:h-[620px] overflow-hidden border border-border/30 shadow-2xl bg-card dark:bg-secondary">
                       <div className={`absolute inset-0 bg-gradient-to-br ${story.color} opacity-60 group-hover:opacity-20 transition-opacity duration-500 z-10`} />
                       <img
                         src={story.image} alt={story.title}
@@ -550,7 +550,7 @@ export default function StoriesPage() {
                 },
               ].map((item, i) => (
                 <div key={i} className="dna-item group">
-                  <div className="w-36 h-36 rounded-3xl bg-[#16161A] border-2 border-primary/20 flex items-center justify-center mx-auto mb-10 group-hover:rotate-[8deg] group-hover:border-primary group-hover:shadow-[0_0_50px_-12px_rgba(0,163,117,0.3)] transition-all duration-500 shadow-2xl relative">
+                  <div className="w-36 h-36 rounded-3xl bg-card dark:bg-secondary border-2 border-primary/20 flex items-center justify-center mx-auto mb-10 group-hover:rotate-[8deg] group-hover:border-primary group-hover:shadow-[0_0_50px_-12px_rgba(0,163,117,0.3)] transition-all duration-500 shadow-2xl relative">
                     <div className="absolute inset-4 rounded-2xl bg-primary/5 group-hover:bg-primary/10 transition-colors" />
                     {item.icon}
                   </div>
