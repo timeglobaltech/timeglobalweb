@@ -76,7 +76,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop — theme toggle + CTA */}
-        <div className="hidden lg:flex items-center gap-3">
+        {/* <div className="hidden lg:flex items-center gap-3">
           <button
             onClick={toggleTheme}
             data-testid="button-theme-toggle"
@@ -92,7 +92,7 @@ export default function Navbar() {
           >
             let's talk
           </button>
-        </div>
+        </div> */}
 
         {/* Mobile hamburger */}
         <div className="flex lg:hidden items-center gap-2">
@@ -153,12 +153,12 @@ export default function Navbar() {
                   )
                 ))}
               </div>
-              <button
+              {/* <button
                 onClick={() => { setIsOpen(false); openModal(); }}
                 className="mt-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-emerald-600 text-white font-bold text-base w-full"
               >
                 let's talk
-              </button>
+              </button> */}
             </div>
           </motion.div>
         )}
