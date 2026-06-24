@@ -1,18 +1,43 @@
-import { useContactModal } from "@/hooks/use-contact-modal";
+import { Link } from "wouter";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
-const AWARDS = [
-  { title: "Top Software Developer", issuer: "Clutch", year: "2023", icon: "🏆" },
-  { title: "Top Mobile App", issuer: "The Manifest", year: "2023", icon: "📱" },
-  { title: "Best IT Company", issuer: "GoodFirms", year: "2022", icon: "⭐" },
-  { title: "Top Web Developer", issuer: "Clutch", year: "2024", icon: "🚀" }
+const AWARD_BADGES = [
+  {
+    name: "Clutch 1000",
+    year: "2025",
+    imageUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v11/icons/clutch.svg",
+  },
+  {
+    name: "TechBehemoths",
+    year: "2025",
+    imageUrl: "https://techbehemoths.com/images/tb-award.png",
+  },
+  {
+    name: "TopDevelopers.co",
+    year: "2024",
+    imageUrl: "https://www.topdevelopers.co/assets/images/badges/top-app-development-companies.png",
+  },
+  {
+    name: "DesignRush",
+    year: "2024",
+    imageUrl: "https://www.designrush.com/assets/img/badges/top-design-company.png",
+  },
+  {
+    name: "GoodFirms",
+    year: "2024",
+    imageUrl: "https://goodfirms.co/images/badges/top-software-development-companies.svg",
+  },
+  {
+    name: "Techreviewer",
+    year: "2025",
+    imageUrl: "https://techreviewer.co/images/badges/top-it-companies.png",
+  },
 ];
 
 export default function Awards() {
-  const { openModal } = useContactModal();
-
   return (
-    <section className="bg-background py-32 relative overflow-hidden">
+    <section className="bg-background py-24 sm:py-32 relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
@@ -27,121 +52,95 @@ export default function Awards() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 mb-24 text-center relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="text-center mb-14 sm:mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="inline-block px-4 py-1.5 rounded-lg bg-primary/15 text-primary font-mono text-sm font-bold mb-6 border border-primary/40 backdrop-blur-sm">
+              {'<Recognition/>'}
+            </div>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
+          >
+            Awards and Recognition
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg text-muted-foreground"
+          >
+            Making tangible impact
+          </motion.p>
+        </div>
+
+        {/* Preview grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 mb-14">
+          {AWARD_BADGES.map((badge, i) => (
+            <motion.div
+              key={badge.name}
+              initial={{ opacity: 0, y: 24, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              whileHover={{ y: -6 }}
+              className="group flex flex-col items-center"
+            >
+              <div className="w-full aspect-square rounded-2xl bg-white border border-gray-200 shadow-lg shadow-black/10 flex flex-col items-center justify-center p-4 relative overflow-hidden group-hover:shadow-xl transition-shadow">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-primary/5 rounded-2xl" />
+                <img
+                  src={badge.imageUrl}
+                  alt={badge.name}
+                  className="w-full h-3/4 object-contain relative z-10"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                    (e.currentTarget.nextElementSibling as HTMLElement).style.display = "flex";
+                  }}
+                />
+                <div
+                  className="hidden w-full h-3/4 items-center justify-center bg-navy rounded-xl"
+                  style={{ backgroundColor: "#1A3E73" }}
+                >
+                  <span className="text-white font-bold text-center text-sm">{badge.name}</span>
+                </div>
+                <p className="text-gray-500 font-mono text-xs mt-2 text-center">
+                  {badge.name} <span>{badge.year}</span>
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* View All Awards button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="flex justify-center"
         >
-          <motion.div
-            className="inline-block px-4 py-1.5 rounded-lg bg-primary/15 text-primary font-mono text-sm font-bold mb-6 border border-primary/40 backdrop-blur-sm"
-            whileHover={{ scale: 1.05, boxShadow: "0 8px 24px rgba(99,102,241,0.2)" }}
+          <Link
+            href="/awards"
+            data-testid="link-view-all-awards"
+            className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-bold text-lg hover:shadow-2xl hover:shadow-primary/30 hover:scale-105 transition-all"
           >
-            {'<Recognition/>'}
-          </motion.div>
+            View All Awards
+            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
         </motion.div>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl md:text-5xl font-bold mb-8"
-        >
-          Awards & Recognition
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg text-muted-foreground max-w-2xl mx-auto mb-16"
-        >
-          Recognized by industry leaders for excellence in software development and innovation
-        </motion.p>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {AWARDS.map((award, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 24, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="flex flex-col items-center group"
-            >
-              {/* Award badge with animation */}
-              <motion.div
-                whileHover={{ scale: 1.08, rotate: 0 }}
-                className="relative mb-6"
-              >
-                {/* Glow effect */}
-                <div className="absolute -inset-8 bg-primary/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity blur-xl" />
-
-                <motion.div
-                  initial={{ rotate: 45 }}
-                  whileHover={{ rotate: 0 }}
-                  className="w-32 h-32 bg-gradient-to-br from-primary/20 to-primary/10 rounded-3xl flex items-center justify-center shadow-xl border-2 border-primary/30 group-hover:border-primary/60 transition-all duration-500 relative z-10"
-                >
-                  <div className="text-4xl text-primary">
-                    {award.icon}
-                  </div>
-                </motion.div>
-              </motion.div>
-
-              {/* Award info */}
-              <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors text-center leading-snug">
-                {award.title}
-              </h3>
-              <p className="text-muted-foreground text-sm">
-                {award.issuer}
-              </p>
-              <p className="text-primary text-xs font-mono mt-2 opacity-60 group-hover:opacity-100 transition-opacity">
-                {award.year}
-              </p>
-            </motion.div>
-          ))}
-        </div>
       </div>
-
-      {/* CTA Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-12 border-t border-primary/20 relative overflow-hidden"
-      >
-        {/* Animated background */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-0"
-            style={{
-              backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)",
-              backgroundSize: "40px 40px",
-            }}
-          />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-8 relative z-10">
-          <span className="text-2xl font-bold text-center md:text-left flex-1">
-            Ready to work with award-winning developers?
-          </span>
-          <motion.button
-            onClick={openModal}
-            data-testid="button-hire-us"
-            whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(0,0,0,0.3)" }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 rounded-full bg-white text-primary font-bold text-lg hover:shadow-2xl transition-all whitespace-nowrap"
-          >
-            Get in Touch →
-          </motion.button>
-        </div>
-      </motion.div>
     </section>
   );
 }

@@ -10,6 +10,7 @@ import WorkPage from "@/pages/WorkPage";
 import ServicesPage from "@/pages/ServicesPage";
 import StoriesPage from "@/pages/StoriesPage";
 import CareersPage from "@/pages/CareersPage";
+import AwardsPage from "@/pages/AwardsPage";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions";
 import CookiePolicy from "@/pages/CookiePolicy";
@@ -28,6 +29,7 @@ function Router() {
       <Route path="/stories" component={StoriesPage} />
       <Route path="/story" component={StoriesPage} />
       <Route path="/careers" component={CareersPage} />
+      <Route path="/awards" component={AwardsPage} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/privacy_and_policy" component={PrivacyPolicy} />
       <Route path="/terms-and-conditions" component={TermsAndConditions} />

@@ -449,13 +449,13 @@ export default function WorkPage() {
                 Time Global · Our Work
               </motion.p>
 
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.0] tracking-tight mb-8 overflow-hidden">
+              <h1 className="font-sans text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.0] tracking-tight mb-8 overflow-hidden">
                 {["We", "Build", "Software"].map((w) => (
                   <span key={w} className="inline-block mr-[0.25em] hero-word">{w}</span>
                 ))}
                 <br />
                 {["That", "Ships."].map((w) => (
-                  <span key={w} className="inline-block mr-[0.25em] hero-word text-primary italic">{w}</span>
+                  <span key={w} className="inline-block mr-[0.25em] hero-word text-primary">{w}</span>
                 ))}
               </h1>
 
